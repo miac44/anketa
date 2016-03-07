@@ -26,4 +26,18 @@ class Anketa extends Model
         );
         return $res;
     }
+
+    public function __get($k)
+    {
+        if ($k == 'elements'){
+            if (isset($this->id)){
+                return \App\Models\Element::getElements($this->id);
+            } else {
+                return FALSE;
+            }
+        }
+        return NULL;
+    }
+
+
 }

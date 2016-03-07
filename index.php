@@ -15,4 +15,4 @@ try {
 	$controller->action($route->action);
 } catch (\App\Exceptions\DBException $e){
 	echo "Ошибка базы данных - " . $e->getMessage();
-} 
+}

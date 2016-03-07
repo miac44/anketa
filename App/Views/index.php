@@ -16,7 +16,6 @@
     	<p><?php echo $anketa->text; ?></p>
     </div>
 </div>
-
 <?php endforeach; ?>
 </div>
 <?php include_once 'footer.scripts.php';?>
