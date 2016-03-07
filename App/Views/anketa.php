@@ -7,7 +7,7 @@
                 Выберите район
             </div>
             <div class="col-md-8">
-                <select size="1" id="input_region" class="" title="Выберите район" name="input_region">
+                <select size="1" id="input_region" class="" title="Выберите район" name="input_region" required>
                     <option value="">Выберите район</option>
                     <?php foreach ($regions as $region) : ?>
                     <option value="<?php echo $region->name; ?>"><?php echo $region->name; ?></option>
@@ -20,7 +20,7 @@
                 Выберите медицинское учреждение
             </div>
             <div class="col-md-8">
-                <select size="1" id="input_ambulance" class="" title="Выберите поликлинику" name="input_ambulance">
+                <select size="1" id="input_ambulance" class="" title="Выберите поликлинику" name="input_ambulance" required>
                     <?php foreach ($ambulances as $ambulance) : ?>
                     <option value="<?php echo $ambulance->name; ?>" class="<?php echo $ambulance->region->name; ?>"><?php echo $ambulance->name; ?></option>
                     <?php endforeach; ?>
@@ -49,10 +49,10 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp1" onclick="showMe('#plan');" value="Плановая">Плановая</label>
+                    <label><input type="radio" name="gosp1" onclick="showMe('#plan');" value="Плановая" required>Плановая</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" name="gosp1" onclick="hideMe('#plan');" value="Экстренная">Экстренная</label>
+                    <label><input type="radio" name="gosp1" onclick="hideMe('#plan');" value="Экстренная" required>Экстренная</label>
                 </div>
             </div>
         </div>
@@ -174,7 +174,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp2" value="за счет ОМС, бюджет">за счет ОМС, бюджет</label>
+                    <label><input type="radio" name="gosp2" value="за счет ОМС, бюджет" required>за счет ОМС, бюджет</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp2" value="за счет ДМС">за счет ДМС</label>
@@ -190,7 +190,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp3" value="Да" onclick="showMe('#gruppa');">Да</label>
+                    <label><input type="radio" name="gosp3" value="Да" onclick="showMe('#gruppa');" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp3" value="Нет" onclick="hideMe('#gruppa');">Нет</label>
@@ -273,7 +273,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp4" value="Да" onclick="showMe('#infosite')">Да</label>
+                    <label><input type="radio" name="gosp4" value="Да" onclick="showMe('#infosite')" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp4" value="Нет" onclick="hideMe('#infosite')">Нет</label>
@@ -300,7 +300,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp5" value="Да" onclick="showMe('#infostand')">Да</label>
+                    <label><input type="radio" name="gosp5" value="Да" onclick="showMe('#infostand')" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp5" value="Нет" onclick="hideMe('#infostand')">Нет</label>
@@ -328,7 +328,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp6" value="Дневного стационара" onclick="hideMe('#kruglosut')">Дневного стационара</label>
+                    <label><input type="radio" name="gosp6" value="Дневного стационара" onclick="hideMe('#kruglosut')" required>Дневного стационара</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp6" value="Круглосуточного пребывания" onclick="showMe('#kruglosut')">Круглосуточного пребывания</label>
@@ -413,7 +413,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp7" value="Да" onclick="hideMe('#kompetent')">Да</label>
+                    <label><input type="radio" name="gosp7" value="Да" onclick="hideMe('#kompetent')" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp7" value="Нет" onclick="showMe('#kompetent')">Нет</label>
@@ -447,7 +447,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp8" value="Да" onclick="hideMe('#uslovia')">Да</label>
+                    <label><input type="radio" name="gosp8" value="Да" onclick="hideMe('#uslovia')" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp8" value="Нет" onclick="showMe('#uslovia')">Нет</label>
@@ -481,7 +481,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp9" value="Да">Да</label>
+                    <label><input type="radio" name="gosp9" value="Да" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp9" value="Нет">Нет</label>
@@ -494,7 +494,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp10" value="Да">Да</label>
+                    <label><input type="radio" name="gosp10" value="Да" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp10" value="Нет">Нет</label>
@@ -507,7 +507,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp11" value="Да">Да</label>
+                    <label><input type="radio" name="gosp11" value="Да" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp11" value="Нет">Нет</label>
@@ -520,7 +520,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp12" value="Да" onclick="showMe('#social_comment')">Да</label>
+                    <label><input type="radio" name="gosp12" value="Да" onclick="showMe('#social_comment')" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp12" value="Нет" onclick="hideMe('#social_comment')">Нет</label>
@@ -548,7 +548,7 @@
             </div>
             <div class="col-md-8">
                 <div class="radio">
-                    <label><input type="radio" name="gosp13" value="Да" onclick="showMe('#blagodar')">Да</label>
+                    <label><input type="radio" name="gosp13" value="Да" onclick="showMe('#blagodar')" required>Да</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="gosp13" value="Нет" onclick="hideMe('#blagodar')">Нет</label>
@@ -605,6 +605,9 @@
     }); 
     function showMe($obj){
         $($obj).collapse('show');
+        $($obj).children('input').each(function(){
+            alert();
+        });
     };
     function hideMe($obj){
         $($obj).collapse('hide');
