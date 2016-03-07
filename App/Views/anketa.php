@@ -56,6 +56,7 @@
             <?php endforeach; ?>
             </div>
         </div>
+        <p></p>
         <?php endforeach; ?>
         <div class="col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Отослать</button>
