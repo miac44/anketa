@@ -23,4 +23,12 @@ class Anketa extends Controller
         $this->view->display(__DIR__ . '/../Views/anketa.php');
     }
 
+    protected function actionSave()
+    {
+        $this->view->title .= ' Сохранить страницу';
+        echo "<pre>";
+        print_r($_REQUEST);
+        echo "</pre>";
+    }
+
 }

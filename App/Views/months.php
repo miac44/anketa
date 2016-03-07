@@ -1,4 +1,4 @@
-<select id="month" title="Выберите месяц">
+<select name="month" id="month" title="Выберите месяц">
 	<option value="Январь">Январь</option>
 	<option value="Февраль">Февраль</option>
 	<option value="Март">Март</option>
