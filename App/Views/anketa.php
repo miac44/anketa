@@ -44,14 +44,17 @@
             </div>
         </div>
         <?php foreach ($anketa->elements as $element) : ?>
-        <div class="row<?php if (!is_null($element->parent_id)) echo " collapse collapse_block_" . $anketa->action . "_" . $element->parent_id;?>">
+        <div class="row<?php if (!is_null($element->ident)) echo " collapse " . $element->ident;?>">
             <div class="col-md-4">
                 <?php echo $element->title; ?>
             </div>
             <div class="col-md-8">
             <?php foreach($element->values as $value) :?>
                 <div class="<?php echo $element->type; ?>">
-                    <label><input type="<?php echo $element->type; ?>" name="<?php echo $anketa->action . "_" . $element->id; ?>[]" value="<?php echo $value->title; ?>"<?php if ($value->action == 'show') echo ' onclick="showMe(\'.collapse_block_' . $anketa->action . '_' . $element->id .'\')"';if ($value->action == 'hide') echo ' onclick="hideMe(\'.collapse_block_' . $anketa->action . '_' . $element->id .'\')"'; if($element->required) echo ' required'; ?>><?php echo $value->title; ?></label>
+                    <label><input type="<?php echo $element->type; ?>" name="<?php echo $anketa->action . "_" . $element->id; ?>[]" value="<?php echo $value->title; ?>" <?php if($element->required) echo 'required '; ?>
+                    onclick="<?php if (!is_null($value->show_element_ident)) echo ' showMe(\'.' . $value->show_element_ident. '\');';?>
+                    <?php if (!is_null($value->hide_element_ident)) echo ' hideMe(\'.' . $value->hide_element_ident. '\');';?>"
+                    ><?php echo $value->title; ?></label>
                 </div>
             <?php endforeach; ?>
             </div>
