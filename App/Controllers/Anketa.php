@@ -15,7 +15,10 @@ class Anketa extends Controller
     }
     protected function actionView()
     {
-        $this->anketa = \App\Models\Anketa::getByAction($_REQUEST['action']);
+        if (!$this->anketa = \App\Models\Anketa::getByAction($_REQUEST['action'])){
+            throw new \App\Exceptions\DBException('Данной анкеты нет в базе');
+        };
+
         $this->view->title .= $this->anketa->title;
         $this->view->anketa = $this->anketa;
         $this->view->regions = \App\Models\Region::findAll();
@@ -25,7 +28,9 @@ class Anketa extends Controller
 
     protected function actionSave()
     {
-        $this->view->title .= ' Сохранить страницу';
+        $this->view->title .= ' Сохранение анкеты';
+        $ip = $_SERVER['REMOTE_ADDR'];
+
         echo "<pre>";
         print_r($_REQUEST);
         echo "</pre>";
