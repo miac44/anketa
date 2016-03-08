@@ -1,13 +1,13 @@
 <?php include_once 'header.php';?>
 <h1 class="text-center"><?php echo $anketa->title; ?></h1>
-<form name="anketa_first" action="/anketa/save/?action=first" method="post">
+<form name="anketa_<?php echo $anketa->action;?>" action="/anketa/save/?action=<?php echo $anketa->action;?>" method="post">
     <div class="fluid-container">
         <div class="row">
             <div class="col-md-4 text-left">
                 Выберите район
             </div>
             <div class="col-md-8">
-                <select size="1" id="input_region" class="" title="Выберите район" name="input_region" required>
+                <select size="1" id="region" class="" title="Выберите район" name="region" required>
                     <option value="">Выберите район</option>
                     <?php foreach ($regions as $region) : ?>
                     <option value="<?php echo $region->name; ?>"><?php echo $region->name; ?></option>
@@ -20,7 +20,7 @@
                 Выберите медицинское учреждение
             </div>
             <div class="col-md-8">
-                <select size="1" id="input_ambulance" class="" title="Выберите поликлинику" name="input_ambulance" required>
+                <select size="1" id="ambulance" class="" title="Выберите поликлинику" name="ambulance" required>
                     <?php foreach ($ambulances as $ambulance) : ?>
                     <option value="<?php echo $ambulance->name; ?>" class="<?php echo $ambulance->region->name; ?>"><?php echo $ambulance->name; ?></option>
                     <?php endforeach; ?>
@@ -51,7 +51,7 @@
             <div class="col-md-8">
             <?php foreach($element->values as $value) :?>
                 <div class="<?php echo $element->type; ?>">
-                    <label><input type="<?php echo $element->type; ?>" name="<?php echo $anketa->action . "_" . $element->id; ?>[]" value="<?php echo $value->title; ?>" <?php if($element->required) echo 'required '; ?>
+                    <label><input type="<?php echo $element->type; ?>" name="<?php echo $anketa->action . "[" . $element->id; ?>][]" value="<?php echo $value->title; ?>" <?php if($element->required) echo 'required '; ?>
                     onclick="<?php if (!is_null($value->show_element_ident)) echo ' showMe(\'.' . $value->show_element_ident. '\');';?>
                     <?php if (!is_null($value->hide_element_ident)) echo ' hideMe(\'.' . $value->hide_element_ident. '\');';?>"
                     ><?php echo $value->title; ?></label>
@@ -70,7 +70,7 @@
 <script type="text/javascript" src="/js/jquery.chained.js"></script>
 <script type="text/javascript"> 
     $(document).ready(function(){ 
-        $("#input_ambulance").chained("#input_region");
+        $("#ambulance").chained("#region");
     }); 
     function showMe($obj){
         $($obj).collapse('show');
