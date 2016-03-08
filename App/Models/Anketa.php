@@ -40,5 +40,24 @@ class Anketa extends Model
         return NULL;
     }
 
+    public static function saveValues($table, $substitution)
+    {
+        foreach ($substitution as $k => $v) {
+            if ('id' == $k) {
+                continue;
+            }
+            $columns[] = $k;
+            $values[':'.$k] = $v;
+        }
+        $sql = '
+            INSERT INTO ' . $table . '
+            (' . implode(',', $columns) . ')
+            VALUES
+            (' . implode(',', array_keys($values)) . ')
+                    ';
+        $db = \App\Db::instance();
+        return $db->execute($sql, $values);
+    }
+
 
 }
