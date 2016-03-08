@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 08, 2016 at 04:08 PM
+-- Generation Time: Mar 08, 2016 at 06:45 PM
 -- Server version: 5.5.45
 -- PHP Version: 5.5.28
 
@@ -84,53 +84,127 @@ INSERT INTO `ambulances` (`id`, `region_id`, `ident`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anketa_first`
+-- Table structure for table `anketa_ambulatoria`
 --
 
-DROP TABLE IF EXISTS `anketa_first`;
-CREATE TABLE IF NOT EXISTS `anketa_first` (
+DROP TABLE IF EXISTS `anketa_ambulatoria`;
+CREATE TABLE IF NOT EXISTS `anketa_ambulatoria` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `ip` varchar(30) NOT NULL,
   `region` varchar(100) NOT NULL,
   `ambulance` varchar(100) NOT NULL,
   `month` varchar(100) NOT NULL,
   `year` varchar(10) NOT NULL,
-  `gosp1` varchar(100) NOT NULL,
-  `gosp1_1` varchar(100) NOT NULL,
-  `gosp1_2` varchar(100) NOT NULL,
-  `gosp1_3` varchar(100) NOT NULL,
-  `gosp1_3_1` varchar(100) NOT NULL,
-  `gosp1_4` varchar(100) NOT NULL,
-  `gosp1_5` varchar(100) NOT NULL,
-  `gosp2` varchar(100) NOT NULL,
-  `gosp3` varchar(100) NOT NULL,
-  `gosp3_1` varchar(100) NOT NULL,
-  `gosp3_2` varchar(100) NOT NULL,
-  `gosp3_2_1` varchar(100) NOT NULL,
-  `gosp4` varchar(100) NOT NULL,
-  `gosp4_1` varchar(100) NOT NULL,
-  `gosp5` varchar(100) NOT NULL,
-  `gosp5_1` varchar(100) NOT NULL,
-  `gosp6` varchar(100) NOT NULL,
-  `gosp6_1` varchar(100) NOT NULL,
-  `gosp6_2` varchar(100) NOT NULL,
-  `gosp6_3` varchar(100) NOT NULL,
-  `gosp6_4` varchar(100) NOT NULL,
-  `gosp6_5` varchar(100) NOT NULL,
-  `gosp7` varchar(100) NOT NULL,
-  `gosp7_1` varchar(100) NOT NULL,
-  `gosp8` varchar(100) NOT NULL,
-  `gosp8_1` varchar(100) NOT NULL,
-  `gosp9` varchar(100) NOT NULL,
-  `gosp10` varchar(100) NOT NULL,
-  `gosp11` varchar(100) NOT NULL,
-  `gosp12` varchar(100) NOT NULL,
-  `gosp12_1` varchar(100) NOT NULL,
-  `gosp13` varchar(100) NOT NULL,
-  `gosp13_1` varchar(100) NOT NULL,
-  `gosp13_2` varchar(100) NOT NULL,
+  `row35` varchar(512) NOT NULL DEFAULT '',
+  `row36` varchar(512) NOT NULL DEFAULT '',
+  `row37` varchar(512) NOT NULL DEFAULT '',
+  `row38` varchar(512) NOT NULL DEFAULT '',
+  `row39` varchar(512) NOT NULL DEFAULT '',
+  `row40` varchar(512) NOT NULL DEFAULT '',
+  `row41` varchar(512) NOT NULL DEFAULT '',
+  `row42` varchar(512) NOT NULL DEFAULT '',
+  `row43` varchar(512) NOT NULL DEFAULT '',
+  `row44` varchar(512) NOT NULL DEFAULT '',
+  `row45` varchar(512) NOT NULL DEFAULT '',
+  `row46` varchar(512) NOT NULL DEFAULT '',
+  `row47` varchar(512) NOT NULL DEFAULT '',
+  `row48` varchar(512) NOT NULL DEFAULT '',
+  `row49` varchar(512) NOT NULL DEFAULT '',
+  `row50` varchar(512) NOT NULL DEFAULT '',
+  `row51` varchar(512) NOT NULL DEFAULT '',
+  `row52` varchar(512) NOT NULL DEFAULT '',
+  `row53` varchar(512) NOT NULL DEFAULT '',
+  `row54` varchar(512) NOT NULL DEFAULT '',
+  `row55` varchar(512) NOT NULL DEFAULT '',
+  `row56` varchar(512) NOT NULL DEFAULT '',
+  `row57` varchar(512) NOT NULL DEFAULT '',
+  `row58` varchar(512) NOT NULL DEFAULT '',
+  `row59` varchar(512) NOT NULL DEFAULT '',
+  `row60` varchar(512) NOT NULL DEFAULT '',
+  `row61` varchar(512) NOT NULL DEFAULT '',
+  `row62` varchar(512) NOT NULL DEFAULT '',
+  `row63` varchar(512) NOT NULL DEFAULT '',
+  `row64` varchar(512) NOT NULL DEFAULT '',
+  `row65` varchar(512) NOT NULL DEFAULT '',
+  `row66` varchar(512) NOT NULL DEFAULT '',
+  `row67` varchar(512) NOT NULL DEFAULT '',
+  `row68` varchar(512) NOT NULL DEFAULT '',
+  `row69` varchar(100) NOT NULL,
+  `row70` varchar(100) NOT NULL,
+  `row71` varchar(100) NOT NULL,
+  `row72` varchar(100) NOT NULL,
+  `row73` varchar(100) NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `anketa_ambulatoria`
+--
+
+INSERT INTO `anketa_ambulatoria` (`id`, `ip`, `region`, `ambulance`, `month`, `year`, `row35`, `row36`, `row37`, `row38`, `row39`, `row40`, `row41`, `row42`, `row43`, `row44`, `row45`, `row46`, `row47`, `row48`, `row49`, `row50`, `row51`, `row52`, `row53`, `row54`, `row55`, `row56`, `row57`, `row58`, `row59`, `row60`, `row61`, `row62`, `row63`, `row64`, `row65`, `row66`, `row67`, `row68`, `row69`, `row70`, `row71`, `row72`, `row73`) VALUES
+(1, '127.0.0.1', 'Волгореченский район', 'Волгореченская ГБ', 'Январь', '2016', 'к врачу-терапевту участковому', 'Да', 'Да', '', 'на прием', '8 часов', '', '', '', '', 'Нет', '', 'не было талонов', 'Нет', 'Нет', '', 'Да', 'Нет', 'Да', '', 'Да', 'I группа', 'Нет', 'отсутствие выделенного места стоянки автотранспортных средств для инвалидов, отсутствие пандусов, по', 'не назначалось', 'Да', 'не назначалось', 'Да', 'Да', 'Да', 'за счет ДМС', 'Нет', 'раз в квартал', 'раз в квартал', 'Да', 'положительный', 'Нет', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anketa_stacionar`
+--
+
+DROP TABLE IF EXISTS `anketa_stacionar`;
+CREATE TABLE IF NOT EXISTS `anketa_stacionar` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `ip` varchar(30) NOT NULL,
+  `region` varchar(100) NOT NULL,
+  `ambulance` varchar(100) NOT NULL,
+  `month` varchar(100) NOT NULL,
+  `year` varchar(10) NOT NULL,
+  `row1` varchar(512) NOT NULL DEFAULT '',
+  `row2` varchar(512) NOT NULL DEFAULT '',
+  `row3` varchar(512) NOT NULL DEFAULT '',
+  `row4` varchar(512) NOT NULL DEFAULT '',
+  `row5` varchar(512) NOT NULL DEFAULT '',
+  `row6` varchar(512) NOT NULL DEFAULT '',
+  `row7` varchar(512) NOT NULL DEFAULT '',
+  `row8` varchar(512) NOT NULL DEFAULT '',
+  `row9` varchar(512) NOT NULL DEFAULT '',
+  `row10` varchar(512) NOT NULL DEFAULT '',
+  `row11` varchar(512) NOT NULL DEFAULT '',
+  `row12` varchar(512) NOT NULL DEFAULT '',
+  `row13` varchar(512) NOT NULL DEFAULT '',
+  `row14` varchar(512) NOT NULL DEFAULT '',
+  `row15` varchar(512) NOT NULL DEFAULT '',
+  `row16` varchar(512) NOT NULL DEFAULT '',
+  `row17` varchar(512) NOT NULL DEFAULT '',
+  `row18` varchar(512) NOT NULL DEFAULT '',
+  `row19` varchar(512) NOT NULL DEFAULT '',
+  `row20` varchar(512) NOT NULL DEFAULT '',
+  `row21` varchar(512) NOT NULL DEFAULT '',
+  `row22` varchar(512) NOT NULL DEFAULT '',
+  `row23` varchar(512) NOT NULL DEFAULT '',
+  `row24` varchar(512) NOT NULL DEFAULT '',
+  `row25` varchar(512) NOT NULL DEFAULT '',
+  `row26` varchar(512) NOT NULL DEFAULT '',
+  `row27` varchar(512) NOT NULL DEFAULT '',
+  `row28` varchar(512) NOT NULL DEFAULT '',
+  `row29` varchar(512) NOT NULL DEFAULT '',
+  `row30` varchar(512) NOT NULL DEFAULT '',
+  `row31` varchar(512) NOT NULL DEFAULT '',
+  `row32` varchar(512) NOT NULL DEFAULT '',
+  `row33` varchar(512) NOT NULL DEFAULT '',
+  `row34` varchar(512) NOT NULL DEFAULT '',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `anketa_stacionar`
+--
+
+INSERT INTO `anketa_stacionar` (`id`, `ip`, `region`, `ambulance`, `month`, `year`, `row1`, `row2`, `row3`, `row4`, `row5`, `row6`, `row7`, `row8`, `row9`, `row10`, `row11`, `row12`, `row13`, `row14`, `row15`, `row16`, `row17`, `row18`, `row19`, `row20`, `row21`, `row22`, `row23`, `row24`, `row25`, `row26`, `row27`, `row28`, `row29`, `row30`, `row31`, `row32`, `row33`, `row34`) VALUES
+(1, '127.0.0.1', 'Буйский район', 'Буйская ГБ', 'Январь', '2016', 'плановая', '', '', 'Нет', 'отсутствие свободных мест ожидания, состояние гардероба', '', '', 'за счет ОМС, бюджет', 'Нет', '', '', '', 'Нет', '', 'Нет', '', 'дневного стационара', '', '', '', '', '', 'Да', '', 'Да', '', 'Да', 'Да', 'Нет', 'Нет', '', 'Нет', '', ''),
+(2, '127.0.0.1', 'Буйский район', 'Буйская ГБ', 'Январь', '2016', 'плановая', '', '', 'Нет', 'отсутствие свободных мест ожидания, состояние гардероба', '', '', 'за счет ОМС, бюджет', 'Нет', '', '', '', 'Нет', '', 'Нет', '', 'дневного стационара', '', '', '', '', '', 'Да', '', 'Да', '', 'Да', 'Да', 'Нет', 'Нет', '', 'Нет', '', ''),
+(3, '127.0.0.1', 'Буйский район', 'Буйская ГБ', 'Январь', '2016', 'плановая', '', '', 'Нет', 'отсутствие свободных мест ожидания, состояние гардероба', '', '', 'за счет ОМС, бюджет', 'Нет', '', '', '', 'Нет', '', 'Нет', '', 'дневного стационара', '', '', '', '', '', 'Да', '', 'Да', '', 'Да', 'Да', 'Нет', 'Нет', '', 'Нет', '', ''),
+(4, '127.0.0.1', 'Буйский район', 'Буйская ГБ', 'Январь', '2016', 'плановая', '', '', 'Нет', 'отсутствие свободных мест ожидания, состояние гардероба', '', '', 'за счет ОМС, бюджет', 'Нет', '', '', '', 'Нет', '', 'Нет', '', 'дневного стационара', '', '', '', '', '', 'Да', '', 'Да', '', 'Да', 'Да', 'Нет', 'Нет', '', 'Нет', '', ''),
+(5, '127.0.0.1', 'Буйский район', 'Буйская ГБ', 'Январь', '2016', 'плановая', '', '', 'Нет', 'отсутствие свободных мест ожидания, состояние гардероба', '', '', 'за счет ОМС, бюджет', 'Нет', '', '', '', 'Нет', '', 'Нет', '', 'дневного стационара', '', '', '', '', '', 'Да', '', 'Да', '', 'Да', 'Да', 'Нет', 'Нет', '', 'Нет', '', '');
 
 -- --------------------------------------------------------
 
