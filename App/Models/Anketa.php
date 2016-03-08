@@ -14,6 +14,7 @@ class Anketa extends Model
     public $title;
     public $text;
     public $action;
+    public $visible;
 
     public static function getByAction($action)
     {

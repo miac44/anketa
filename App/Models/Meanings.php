@@ -13,8 +13,9 @@ class Meanings extends Model
     public $id;
     public $element_id;
     public $title;
-    public $action;
     public $default;
+    public $show_element_ident;
+    public $hide_element_ident;
 
     public static function getValues($element_id)
     {

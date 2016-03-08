@@ -15,7 +15,7 @@ class Element extends Model
     public $type;
     public $title;
     public $required;
-    public $parent_id;
+    public $ident;
 
     public static function getElements($anketa_id)
     {
@@ -42,5 +42,3 @@ class Element extends Model
     }
 
 }
-
-
