@@ -71,6 +71,8 @@ class Anketa extends Controller
             $this->view->display(__DIR__ . '/../Views/anketa_need_required.php');
         } else {
             \App\Models\Anketa::saveValues('anketa_' . $this->anketa->action, $values);
+            $csvfile = new \App\CSV($this->anketa->action);
+            $csvfile->export();
             $this->view->display(__DIR__ . '/../Views/anketa_saved.php');
         }
 
