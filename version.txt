@@ -1,3 +1,6 @@
+Anketa 0.4.1 Release
++ количество анкет на главной
+
 Anketa 0.4 Release
 + Выгрузка в csv
 
