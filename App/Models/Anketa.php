@@ -15,6 +15,7 @@ class Anketa extends Model
     public $text;
     public $action;
     public $visible;
+    public $count;
 
     public static function getByAction($action)
     {
@@ -57,6 +58,13 @@ class Anketa extends Model
                     ';
         $db = \App\Db::instance();
         return $db->execute($sql, $values);
+    }
+
+    public static function getCountValues($table)
+    {
+        $sql = 'SELECT COUNT(*) as count FROM ' . $table;
+        $db = \App\Db::instance();
+        return $db->queryRaw($sql);
     }
 
 

@@ -11,6 +11,9 @@ class Anketa extends Controller
     {
         $this->view->title .= ' Главная страница';
         $this->view->ankets = \App\Models\Anketa::findAll();
+        foreach($this->view->ankets as $k=>$v){
+            $this->view->ankets[$k]->count = \App\Models\Anketa::getCountValues('anketa_' . $this->view->ankets[$k]->action)[0]['count'];
+        }
         $this->view->display(__DIR__ . '/../Views/index.php');
     }
     protected function actionView()
