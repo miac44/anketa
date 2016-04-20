@@ -20,6 +20,7 @@ class CSV
         foreach ($elements as $element) {
             $content .= '"' . $element->title . '";';
         }
+        $content .= 'Заполнено;';
         $content .= "\r\n";
         $sql = 'SELECT * FROM anketa_' . $this->action;
         $db = \App\Db::instance();

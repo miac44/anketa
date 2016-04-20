@@ -40,8 +40,11 @@ class Anketa extends Controller
             'region' => $_REQUEST['region'],
             'ambulance' => $_REQUEST['ambulance'],
             'month' => $_REQUEST['month'],
-            'year' => $_REQUEST['year']
+            'year' => $_REQUEST['year'],
         );
+        if (isset($_REQUEST['type'])){
+            $values['type'] = 'Вручную';
+        }
 
         foreach($_REQUEST[$this->anketa->action] as $k=>$v){
             if(count($v)>1){
@@ -50,6 +53,7 @@ class Anketa extends Controller
                 $values['row'.$k] = $v[0];
             }
         }
+
         //TODO: Поправить для общего случая. Пока затычка
 
         if (empty($_REQUEST['region'])){

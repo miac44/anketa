@@ -62,8 +62,11 @@
         <p></p>
         <?php endforeach; ?>
         <div class="col-md-12 text-center">
+            <?php if($_SERVER['REMOTE_ADDR']=="IP_MIAC"){
+                echo '<button name="type" value="Вручную" type="submit" class="btn btn-primary">ЗАПОЛНЕНО ВРУЧНУЮ</button>';
+            }?>
             <button type="submit" class="btn btn-primary">Отослать</button>
-        </div>
+
     </div>
 </form>
 <?php include_once 'footer.scripts.php';?>
