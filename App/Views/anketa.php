@@ -62,10 +62,12 @@
         <p></p>
         <?php endforeach; ?>
         <div class="col-md-12 text-center">
-            <?php if($_SERVER['REMOTE_ADDR']=="IP_MIAC"){
-                echo '<button name="type" value="Вручную" type="submit" class="btn btn-primary">ЗАПОЛНЕНО ВРУЧНУЮ</button>';
-            }?>
-            <button type="submit" class="btn btn-primary">Отослать</button>
+            <?php if($_SERVER['REMOTE_ADDR']=="85.113.211.16"){?>
+                <button name="type" value="Вручную" type="submit" class="btn btn-primary">Отослать(ВРУЧНУЮ)</button>
+                <button name="type" value="МЗ" type="submit" class="btn btn-primary">Отослать(МЗ)</button>
+            <?php } else { ?>
+                <button type="submit" class="btn btn-primary">Отослать</button>
+            <?php }; ?>
 
     </div>
 </form>

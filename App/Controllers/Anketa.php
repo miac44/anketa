@@ -43,7 +43,7 @@ class Anketa extends Controller
             'year' => $_REQUEST['year'],
         );
         if (isset($_REQUEST['type'])){
-            $values['type'] = 'Вручную';
+            $values['type'] = $_REQUEST['type'];
         }
 
         foreach($_REQUEST[$this->anketa->action] as $k=>$v){
