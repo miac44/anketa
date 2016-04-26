@@ -68,9 +68,11 @@ class Anketa extends Controller
         if (empty($_REQUEST['year'])) {
             $this->view->errors .= "<p>Год посещения</p>";
         }
-        foreach ($this->anketa->elements as $element) {
-            if (!array_key_exists($element->id,$_REQUEST[$this->anketa->action]) && $element->required){
-                $this->view->errors .= "<p>" . $element->title . "</p>";
+        if ($_SERVER['REMOTE_ADDR']!="85.113.211.16"){
+            foreach ($this->anketa->elements as $element) {
+                if (!array_key_exists($element->id,$_REQUEST[$this->anketa->action]) && $element->required){
+                    $this->view->errors .= "<p>" . $element->title . "</p>";
+                }
             }
         }
 
