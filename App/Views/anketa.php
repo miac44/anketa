@@ -51,7 +51,7 @@
             <div class="col-md-8">
             <?php foreach($element->values as $value) :?>
                 <div class="<?php echo $element->type; ?>">
-                    <label><input type="<?php echo $element->type; ?>" name="<?php echo $anketa->action . "[" . $element->id; ?>][]" value="<?php echo $value->title; ?>" <?php if($element->required) echo 'required '; ?>
+                    <label><input type="<?php echo $element->type; ?>" name="<?php echo $anketa->action . "[" . $element->id; ?>][]" value="<?php echo $value->title; ?>" <?php if(($element->required) && ($_SERVER['REMOTE_ADDR']!="85.113.211.16")) echo 'required '; ?>
                     onclick="<?php if (!is_null($value->show_element_ident)) echo ' showMe(\'.' . $value->show_element_ident. '\');';?>
                     <?php if (!is_null($value->hide_element_ident)) echo ' hideMe(\'.' . $value->hide_element_ident. '\');';?>"
                     ><?php echo $value->title; ?></label>
