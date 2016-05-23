@@ -16,7 +16,7 @@ class Router
 	}
 	public static function startPageAction()
 	{
-		return self::DEFAULT_ACTION;
+		return 'Index';
 	}
 
 	public static function parseUrl($url)

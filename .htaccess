@@ -1,11 +1,12 @@
-<Files admin.php> 
-	AuthUserFile d:\OpenServer\domains\anketa\.htpasswd
+RewriteEngine On
+
+<Files "admin.php"> 
+	AuthUserFile ПУТЬКФАЙЛЫ\.htpasswd
 	AuthName "Authorized personnel only."
 	AuthType Basic
 	Require valid-user
 </Files>
 
-RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
