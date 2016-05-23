@@ -10,6 +10,7 @@ class Admin extends Controller
     protected function actionIndex()
     {
         $this->view->title .= ' Админка';
+        $this->view->ambulances = \App\Models\Ambulance::findAll();
         $this->view->display(__DIR__ . '/../Views/admin.php');
     }
 }

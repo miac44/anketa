@@ -16,6 +16,7 @@ abstract class Model
         );
     }
 
+
     public static function findById($id)
     {
         $db = Db::instance();
@@ -27,6 +28,7 @@ abstract class Model
         );
         return $res;
     }
+
     public function isNew()
     {
         return empty($this->id);

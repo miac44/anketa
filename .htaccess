@@ -1,7 +1,7 @@
 RewriteEngine On
 
 <Files "admin.php"> 
-	AuthUserFile –ü–£–¢–¨–ö–§–ê–ô–õ–´\.htpasswd
+	AuthUserFile {œ”“‹ ƒŒ ‘¿…À¿}\.htpasswd
 	AuthName "Authorized personnel only."
 	AuthType Basic
 	Require valid-user
