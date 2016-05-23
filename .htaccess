@@ -1,8 +1,15 @@
+<Files admin.php> 
+	AuthUserFile d:\OpenServer\domains\anketa\.htpasswd
+	AuthName "Authorized personnel only."
+	AuthType Basic
+	Require valid-user
+</Files>
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^(admin.*)$ admin.php [QSA]
+RewriteRule ^admin/(.*)$ admin.php [QSA]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -10,3 +17,4 @@ RewriteCond %{REQUEST_FILENAME} !-l
 RewriteRule ^(.*)$ index.php [QSA]
 
 AddDefaultCharset UTF-8
+
