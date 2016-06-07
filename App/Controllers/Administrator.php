@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\View, App\Controller;
-class Admin extends Controller
+class Administrator extends Controller
 {
 
     protected function beforeAction()

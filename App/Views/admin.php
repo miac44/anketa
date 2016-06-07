@@ -3,9 +3,9 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/admin/">Главная</a></li>
-        <li><a href="/admin/stacionar/">Свод (СТАЦИОНАР)</a></li>
-        <li><a href="/admin/ambulatoria/">Свод (АМБУЛАТОРИЯ)</a></li>
+        <li class="active"><a href="/administrator/">Главная</a></li>
+        <li><a href="/administrator/stacionar/">Свод (СТАЦИОНАР)</a></li>
+        <li><a href="/administrator/ambulatoria/">Свод (АМБУЛАТОРИЯ)</a></li>
       </ul>
     </div>
   </div>
