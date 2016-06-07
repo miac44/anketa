@@ -4,13 +4,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/admin/">Главная</a></li>
-        <li><a href="#">Сводная предварительная таблица</a></li>
+        <li><a href="/admin/stacionar/">Свод (СТАЦИОНАР)</a></li>
+        <li><a href="/admin/ambulatoria/">Свод (АМБУЛАТОРИЯ)</a></li>
       </ul>
     </div>
   </div>
 </nav>
 <div class="container-fluid">
-    <table class="table">
+    <table class="table table-bordered">
       <thead class="thead-inverse">
         <tr>
           <th rowspan="2" class="text-center">id</th>
@@ -34,16 +35,17 @@
         <tr>
           <td><?php echo $ambulance->id; ?></td>
           <td><?php echo $ambulance->name; ?></td>
-          <td><?php echo $ambulance->count_ambulatoria_site; ?></td>
-          <td><?php echo $ambulance->count_stacionar_site; ?></td>
-          <td><?php echo $ambulance->count_ambulatoria_manual; ?></td>
-          <td><?php echo $ambulance->count_stacionar_manual; ?></td>
-          <td><?php echo $ambulance->count_ambulatoria; ?></td>
-          <td><?php echo $ambulance->count_stacionar; ?></td>
-          <td><?php echo $ambulance->count_ambulatoria+$ambulance->count_stacionar; ?></td>
+          <td><?php echo $ambulance->ambulatoria->getCountByType('Сайт'); ?></td>
+          <td><?php echo $ambulance->stacionar->getCountByType('Сайт'); ?></td>
+          <td><?php echo $ambulance->ambulatoria->getCountByType('Вручную'); ?></td>
+          <td><?php echo $ambulance->stacionar->getCountByType('Вручную'); ?></td>
+          <td><?php echo $ambulance->ambulatoria->getCount(); ?></td>
+          <td><?php echo $ambulance->stacionar->getCount(); ?></td>
+          <td><?php echo $ambulance->stacionar->getCount()+$ambulance->ambulatoria->getCount(); ?></td>
         </tr>
       <?php endforeach; ?>  
       </tbody>
     </table>
 </div>
+
 <?php include_once 'footer.php';?>

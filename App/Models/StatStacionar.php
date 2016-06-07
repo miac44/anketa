@@ -8,12 +8,12 @@ class StatStacionar extends Model
 {
     const TABLE = 'anketa_stacionar';
     public $ambulance;
-    public $countbytype;
+    public $countbytype = array(0);
 
     public function __construct($ambulance)
     {
         $this->ambulance = $ambulance;
-        $sql = 'SELECT type, COUNT(*) as count FROM `anketa_stacionar` WHERE ambulance=:ambulance AND type<>"" GROUP BY type';
+        $sql = 'SELECT type, COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND type<>"" GROUP BY type';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $ambulance ));
         foreach ($res as $value) {
@@ -247,7 +247,12 @@ class StatStacionar extends Model
     }
 
     public function getCountByType($type){
-        return $this->countbytype[$type];
+        if (isset($this->countbytype[$type])){
+            return $this->countbytype[$type];
+        } else {
+            return 0;
+        }
+
     }
 
     public function getCount(){

@@ -13,4 +13,18 @@ class Admin extends Controller
         $this->view->ambulances = \App\Models\Ambulance::findAll();
         $this->view->display(__DIR__ . '/../Views/admin.php');
     }
+    protected function actionStacionar()
+    {
+        $this->view->title .= ' Cвод(СТАЦИОНАР)';
+        $this->view->ambulances = \App\Models\Ambulance::findAll();
+        $this->view->display(__DIR__ . '/../Views/admin_stacionar.php');
+    }
+
+    protected function actionAmbulatoria()
+    {
+        $this->view->title .= ' Cвод(АМБУЛАТОРИЯ)';
+        $this->view->ambulances = \App\Models\Ambulance::findAll();
+        $this->view->display(__DIR__ . '/../Views/admin_ambulatoria.php');
+    }
+
 }
