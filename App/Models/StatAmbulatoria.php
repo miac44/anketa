@@ -115,7 +115,7 @@ class StatAmbulatoria extends Model
         if ($a+$b+$c+$d+$e+$f==0){
             $time = 99999;
         } else {
-            echo $time = ($a * 6 + $b * 7 + $c * 10 + $d * 12 + $e * 13 + $f * 14) / ($a + $b + $c + $d + $e + $f);
+            $time = ($a * 6 + $b * 7 + $c * 10 + $d * 12 + $e * 13 + $f * 14) / ($a + $b + $c + $d + $e + $f);
         };
         $points = 0;
         if ($time<=10) $points++;
