@@ -87,7 +87,46 @@ class StatAmbulatoria extends Model
 
     public function get_2_2()
     {
-        return FALSE;
+        $row = 'row41';
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="менее 7 календарных дней"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $a = (int)$res[0]['count'];
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="7 календарных дней"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $b = (int)$res[0]['count'];
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="10 календарных дней"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $c = (int)$res[0]['count'];
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="12 календарных дней"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $d = (int)$res[0]['count'];
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="13 календарных дней"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $e = (int)$res[0]['count'];
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="14 календарных дней"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $f = (int)$res[0]['count'];
+        if ($a+$b+$c+$d+$e+$f==0){
+            $time = 99999;
+        } else {
+            $time = ($a * 6 + $b * 7 + $c * 10 + $d * 12 + $e * 13 + $f * 14) / ($a + $b + $c + $d + $e + $f);
+        };
+        $points = 0;
+        if ($time<=10) $points++;
+        if ($time<=9) $points++;
+        if ($time<=8) $points++;
+        if ($time<=7) $points++;
+        if ($time<=5) $points++;
+        $stat = new Stat();
+        $stat->points = $points;
+        return $stat;
+
     }
 
     public function get_2_3()
@@ -150,7 +189,6 @@ class StatAmbulatoria extends Model
         $stat = new Stat();
         $stat->points = $points;
         return $stat;
-
     }
     public function get_3_2()
     {
