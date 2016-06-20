@@ -87,7 +87,7 @@ class StatAmbulatoria extends Model
 
     public function get_2_2()
     {
-        $row = 'row41';
+        $row = 'row44';
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="менее 7 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
@@ -115,7 +115,7 @@ class StatAmbulatoria extends Model
         if ($a+$b+$c+$d+$e+$f==0){
             $time = 99999;
         } else {
-            $time = ($a * 6 + $b * 7 + $c * 10 + $d * 12 + $e * 13 + $f * 14) / ($a + $b + $c + $d + $e + $f);
+            echo $time = ($a * 6 + $b * 7 + $c * 10 + $d * 12 + $e * 13 + $f * 14) / ($a + $b + $c + $d + $e + $f);
         };
         $points = 0;
         if ($time<=10) $points++;
@@ -131,7 +131,9 @@ class StatAmbulatoria extends Model
 
     public function get_2_3()
     {
-        return FALSE;
+        $stat = new Stat();
+        $stat->points = 4;
+        return $stat;
     }
 
     public function get_2_4()
