@@ -6,6 +6,7 @@
                 <li><a href="/administrator/">Главная</a></li>
                 <li class="active"><a href="/administrator/stacionar/">Свод (СТАЦИОНАР)</a></li>
                 <li><a href="/administrator/ambulatoria/">Свод (АМБУЛАТОРИЯ)</a></li>
+                <li><a href="/administrator/enter_data/">Ввод данных с МЗ</a></li>
             </ul>
         </div>
     </div>
