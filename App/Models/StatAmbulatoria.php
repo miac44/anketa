@@ -214,7 +214,9 @@ class StatAmbulatoria extends Model
     }
     public function get_4_2()
     {
-        return FALSE;
+        $stat = $this->getStatPerYes('row42');
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
     }
     public function get_5_1()
     {
