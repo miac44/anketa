@@ -35,11 +35,11 @@ class StatAmbulatoria extends Model
 
     private function getStatPerYES($row)
     {
-        $sql = 'SELECT COUNT(*) as count_true FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="��"';
+        $sql = 'SELECT COUNT(*) as count_true FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="Да"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
         $count_true = (int)$res[0]['count_true'];
-        $sql = 'SELECT COUNT(*) as count_false FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="���"';
+        $sql = 'SELECT COUNT(*) as count_false FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="Нет"';
 
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
@@ -122,7 +122,32 @@ class StatAmbulatoria extends Model
 
     public function get_3_3()
     {
-        return FALSE;
+        $row = 'row60';
+        $sql = 'SELECT COUNT(*) as count_true FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="Да"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $count_true = (int)$res[0]['count_true'];
+
+        $sql = 'SELECT COUNT(*) as count_false FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="Нет"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $count_false = (int)$res[0]['count_false'];
+
+        $row = 'row62';
+        $sql = 'SELECT COUNT(*) as count_true FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="Да"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $count_true += (int)$res[0]['count_true'];
+
+        $sql = 'SELECT COUNT(*) as count_false FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="Нет"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $count_false += (int)$res[0]['count_false'];
+
+
+        $stat = new Stat($count_true, $count_false);
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
     }
 
     public function get_4_1()
