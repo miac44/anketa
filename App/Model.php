@@ -35,9 +35,6 @@ abstract class Model
     }
     public function insert()
     {
-        if (!$this->isNew()) {
-            return;
-        }
         $columns = [];
         $values = [];
         foreach ($this as $k => $v) {
@@ -60,9 +57,6 @@ abstract class Model
 
     public function update()
     {
-        if ($this->isNew()) {
-            return;
-        }
         $values = [];
         $sql = '
             UPDATE ' . static::TABLE . ' SET ';
@@ -77,6 +71,7 @@ abstract class Model
         }
         $sql = substr($sql, 0, -2);
         $sql .= ' WHERE id=:id';
+
         $db = Db::instance();
         $db->execute($sql, $values);
     }
