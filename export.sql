@@ -14,7 +14,6 @@
 CREATE TABLE IF NOT EXISTS `MZambulatoria` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `count` int(11) NOT NULL DEFAULT '0',
-  `mzambulatoria_01` int(11) NOT NULL DEFAULT '0',
   `mzambulatoria_02` int(11) NOT NULL DEFAULT '0',
   `mzambulatoria_03` int(11) NOT NULL DEFAULT '0',
   `mzambulatoria_04` int(11) NOT NULL DEFAULT '0',
@@ -88,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `MZambulatoria` (
 CREATE TABLE IF NOT EXISTS `MZstacionar` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `count` int(11) NOT NULL DEFAULT '0',
-  `mzstacionar_01` int(11) NOT NULL DEFAULT '0',
   `mzstacionar_02` int(11) NOT NULL DEFAULT '0',
   `mzstacionar_03` int(11) NOT NULL DEFAULT '0',
   `mzstacionar_04` int(11) NOT NULL DEFAULT '0',
