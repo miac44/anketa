@@ -51,7 +51,8 @@ class Administrator extends Controller
         $this->view->id = $_REQUEST['id'];
         $this->view->title .= " Ввод данных - " . $this->view->ambulance->name;
         $this->view->mzambulatoria = \App\Models\MZambulatoria::findById($_REQUEST['id']);
-        $this->view->mzambulatoria_textdata = \App\Models\MZambulatoria::textData();
+        $this->view->mzambulatoria_textquestion = \App\Models\MZambulatoria::textQuestion();
+        $this->view->mzambulatoria_textvalue = \App\Models\MZambulatoria::textValue();
         $this->view->display(__DIR__ . '/../Views/admin_enterdata_ambulatoria.php');
     }
 

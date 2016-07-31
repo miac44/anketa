@@ -12,76 +12,10 @@ class MZambulatoria extends Model
 
     public $id;
     public $count;
-//    public $mzambulatoria_01;
-    public $mzambulatoria_02;
-    public $mzambulatoria_03;
-    public $mzambulatoria_04;
-    public $mzambulatoria_05;
-    public $mzambulatoria_06;
-    public $mzambulatoria_07;
-    public $mzambulatoria_08;
-    public $mzambulatoria_09;
-    public $mzambulatoria_10;
-    public $mzambulatoria_11;
-    public $mzambulatoria_12;
-    public $mzambulatoria_13;
-    public $mzambulatoria_14;
-    public $mzambulatoria_15;
-    public $mzambulatoria_16;
-    public $mzambulatoria_17;
-    public $mzambulatoria_18;
-    public $mzambulatoria_19;
-    public $mzambulatoria_20;
-    public $mzambulatoria_21;
-    public $mzambulatoria_22;
-    public $mzambulatoria_23;
-    public $mzambulatoria_24;
-    public $mzambulatoria_25;
-    public $mzambulatoria_26;
-    public $mzambulatoria_27;
-    public $mzambulatoria_28;
-    public $mzambulatoria_29;
-    public $mzambulatoria_30;
-    public $mzambulatoria_31;
-    public $mzambulatoria_32;
-    public $mzambulatoria_33;
-    public $mzambulatoria_34;
-    public $mzambulatoria_35;
-    public $mzambulatoria_36;
-    public $mzambulatoria_37;
-    public $mzambulatoria_38;
-    public $mzambulatoria_39;
-    public $mzambulatoria_40;
-    public $mzambulatoria_41;
-    public $mzambulatoria_42;
-    public $mzambulatoria_43;
-    public $mzambulatoria_44;
-    public $mzambulatoria_45;
-    public $mzambulatoria_46;
-    public $mzambulatoria_47;
-    public $mzambulatoria_48;
-    public $mzambulatoria_49;
-    public $mzambulatoria_50;
-    public $mzambulatoria_51;
-    public $mzambulatoria_52;
-    public $mzambulatoria_53;
-    public $mzambulatoria_54;
-    public $mzambulatoria_55;
-    public $mzambulatoria_56;
-    public $mzambulatoria_57;
-    public $mzambulatoria_58;
-    public $mzambulatoria_59;
-    public $mzambulatoria_60;
-    public $mzambulatoria_61;
-    public $mzambulatoria_62;
-    public $mzambulatoria_63;
-    public $mzambulatoria_64;
 
-    static public function textData()
+    static public function textQuestion()
     {
         $textdata = [];
-        $textdata['count'] = 'Количество';
-//        $textdata['mzambulatoria_01'] = '1. Месяц и год обращения в данную медицинскую организацию';
         $textdata['mzambulatoria_02'] = '2. Вы обратились в медицинскую организацию?';
         $textdata['mzambulatoria_03'] = '3. Вы удовлетворены обслуживанием (доброжелательность, вежливость) у участкового терапевта?';
         $textdata['mzambulatoria_04'] = '4. Удовлетворены ли Вы компетентностью участкового терапевта?';
@@ -146,6 +80,275 @@ class MZambulatoria extends Model
         $textdata['mzambulatoria_63'] = '63. Кто был инициатором благодарения?';
         $textdata['mzambulatoria_64'] = '64. Форма благодарения:';
         return $textdata;
+   }
 
-    }
+   static public function textValue()
+   {
+        $textdata = [];
+        $textdata['mzambulatoria_02'][1] = 'к врачу-терапевту участковому';
+        $textdata['mzambulatoria_02'][2] = 'к врачу-педиатру участковому';
+        $textdata['mzambulatoria_02'][3] = 'к врачу общей практики (семейному врачу)';
+        $textdata['mzambulatoria_02'][4] = 'к врачу-специалисту (лор, хирург, невролог, офтальмолог, стоматолог, другие)';
+        $textdata['mzambulatoria_02'][5] = 'другое (диспансеризация, профосмотр, справка, рецепт и т.д.)';
+
+        $textdata['mzambulatoria_03'][1] = 'да';
+        $textdata['mzambulatoria_03'][2] = 'нет';
+
+        $textdata['mzambulatoria_04'][1] = 'да';
+        $textdata['mzambulatoria_04'][2] = 'нет';
+
+        $textdata['mzambulatoria_05'][1] = 'Вам не разъяснили информацию о состоянии здоровья';
+        $textdata['mzambulatoria_05'][2] = 'Вам не дали рекомендации по диагностике, лечению и реабилитации';
+        $textdata['mzambulatoria_05'][3] = 'Вам не дали выписку';
+        $textdata['mzambulatoria_05'][4] = 'Вам не выписали рецепт';
+        $textdata['mzambulatoria_05'][5] = 'другое';
+
+        $textdata['mzambulatoria_06'][1] = 'на прием';
+        $textdata['mzambulatoria_06'][2] = 'вызов на дом';
+
+        $textdata['mzambulatoria_07'][1] = '24 часа и более';
+        $textdata['mzambulatoria_07'][2] = '12 часов';
+        $textdata['mzambulatoria_07'][3] = '8 часов';
+        $textdata['mzambulatoria_07'][4] = '6 часов';
+        $textdata['mzambulatoria_07'][5] = '3 часа';
+        $textdata['mzambulatoria_07'][6] = 'менее 1 часа';
+
+        $textdata['mzambulatoria_08'][1] = 'да';
+        $textdata['mzambulatoria_08'][2] = 'нет';
+
+        $textdata['mzambulatoria_09'][1] = 'да';
+        $textdata['mzambulatoria_09'][2] = 'нет';
+
+        $textdata['mzambulatoria_10'][1] = 'Вам не разъяснили информацию о состоянии здоровья';
+        $textdata['mzambulatoria_10'][2] = 'Вам не дали рекомендации по диагностике, лечению и реабилитации';
+        $textdata['mzambulatoria_10'][3] = 'Вам не дали выписку';
+        $textdata['mzambulatoria_10'][4] = 'Вам не выписали рецепт';
+        $textdata['mzambulatoria_10'][5] = 'другое';
+
+        $textdata['mzambulatoria_11'][1] = 'на прием';
+        $textdata['mzambulatoria_11'][2] = 'вызов на дом';
+
+        $textdata['mzambulatoria_12'][1] = '24 часа и более';
+        $textdata['mzambulatoria_12'][2] = '12 часов';
+        $textdata['mzambulatoria_12'][3] = '8 часов';
+        $textdata['mzambulatoria_12'][4] = '6 часов';
+        $textdata['mzambulatoria_12'][5] = '3 часа';
+        $textdata['mzambulatoria_12'][6] = 'менее 1 часа';
+
+        $textdata['mzambulatoria_13'][1] = 'да';
+        $textdata['mzambulatoria_13'][2] = 'нет';
+
+        $textdata['mzambulatoria_14'][1] = 'да';
+        $textdata['mzambulatoria_14'][2] = 'нет';
+
+        $textdata['mzambulatoria_15'][1] = 'Вам не разъяснили информацию о состоянии здоровья';
+        $textdata['mzambulatoria_15'][2] = 'Вам не дали рекомендации по диагностике, лечению и реабилитации';
+        $textdata['mzambulatoria_15'][3] = 'Вам не дали выписку';
+        $textdata['mzambulatoria_15'][4] = 'Вам не выписали рецепт';
+        $textdata['mzambulatoria_15'][5] = 'другое';
+
+        $textdata['mzambulatoria_16'][1] = 'на прием';
+        $textdata['mzambulatoria_16'][2] = 'вызов на дом';
+
+        $textdata['mzambulatoria_17'][1] = '24 часа и более';
+        $textdata['mzambulatoria_17'][2] = '12 часов';
+        $textdata['mzambulatoria_17'][3] = '8 часов';
+        $textdata['mzambulatoria_17'][4] = '6 часов';
+        $textdata['mzambulatoria_17'][5] = '3 часа';
+        $textdata['mzambulatoria_17'][6] = 'менее 1 часа';
+
+        $textdata['mzambulatoria_18'][1] = 'да';
+        $textdata['mzambulatoria_18'][2] = 'нет';
+
+        $textdata['mzambulatoria_19'][1] = 'да';
+        $textdata['mzambulatoria_19'][2] = 'нет';
+
+        $textdata['mzambulatoria_20'][1] = 'Вам не разъяснили информацию о состоянии здоровья';
+        $textdata['mzambulatoria_20'][2] = 'Вам не дали рекомендации по диагностике, лечению и реабилитации';
+        $textdata['mzambulatoria_20'][3] = 'Вам не дали выписку';
+        $textdata['mzambulatoria_20'][4] = 'Вам не выписали рецепт';
+        $textdata['mzambulatoria_20'][5] = 'другое';
+
+        $textdata['mzambulatoria_21'][1] = '14 календарных дней и более';
+        $textdata['mzambulatoria_21'][2] = '13 календарных дней';
+        $textdata['mzambulatoria_21'][3] = '12 календарных дней';
+        $textdata['mzambulatoria_21'][4] = '10 календарных дней';
+        $textdata['mzambulatoria_21'][5] = '7 календарных дней';
+        $textdata['mzambulatoria_21'][6] = 'меньше 7 календарных дней';
+
+        $textdata['mzambulatoria_22'][1] = 'да';
+        $textdata['mzambulatoria_22'][2] = 'нет';
+
+        $textdata['mzambulatoria_23'][1] = 'да';
+        $textdata['mzambulatoria_23'][2] = 'нет';
+
+        $textdata['mzambulatoria_24'][1] = 'Вам не разъяснили информацию о состоянии здоровья';
+        $textdata['mzambulatoria_24'][2] = 'Вам не дали рекомендации по диагностике, лечению и реабилитации';
+        $textdata['mzambulatoria_24'][3] = 'Вам не дали выписку';
+        $textdata['mzambulatoria_24'][4] = 'Вам не выписали рецепт';
+        $textdata['mzambulatoria_24'][5] = 'другое';
+
+        $textdata['mzambulatoria_25'][1] = '14 календарных дней и более';
+        $textdata['mzambulatoria_25'][2] = '13 календарных дней';
+        $textdata['mzambulatoria_25'][3] = '12 календарных дней';
+        $textdata['mzambulatoria_25'][4] = '10 календарных дней';
+        $textdata['mzambulatoria_25'][5] = '7 календарных дней';
+        $textdata['mzambulatoria_25'][6] = 'меньше 7 календарных дней';
+
+        $textdata['mzambulatoria_26'][1] = 'да';
+        $textdata['mzambulatoria_26'][2] = 'нет';
+
+        $textdata['mzambulatoria_27'][1] = 'по телефону';
+        $textdata['mzambulatoria_27'][2] = 'с использованием сети Интернет';
+        $textdata['mzambulatoria_27'][3] = 'в регистратуре лично';
+        $textdata['mzambulatoria_27'][4] = 'лечащим врачом на приеме при посещении';
+
+        $textdata['mzambulatoria_28'][1] = 'не дозвонился';
+        $textdata['mzambulatoria_28'][2] = 'не было талонов';
+        $textdata['mzambulatoria_28'][3] = 'не было технической возможности записаться в электронном виде';
+        $textdata['mzambulatoria_28'][4] = 'другое';
+
+        $textdata['mzambulatoria_29'][1] = 'да';
+        $textdata['mzambulatoria_29'][2] = 'нет';
+
+        $textdata['mzambulatoria_30'][1] = 'да';
+        $textdata['mzambulatoria_30'][2] = 'нет';
+
+        $textdata['mzambulatoria_31'][1] = 'да';
+        $textdata['mzambulatoria_31'][2] = 'нет';
+
+        $textdata['mzambulatoria_32'][1] = 'да';
+        $textdata['mzambulatoria_32'][2] = 'нет';
+
+        $textdata['mzambulatoria_33'][1] = 'да';
+        $textdata['mzambulatoria_33'][2] = 'нет';
+
+        $textdata['mzambulatoria_34'][1] = 'да';
+        $textdata['mzambulatoria_34'][2] = 'нет';
+
+        $textdata['mzambulatoria_35'][1] = 'отсутствие  свободных мест ожидания';
+        $textdata['mzambulatoria_35'][2] = 'состояние  гардероба';
+        $textdata['mzambulatoria_35'][3] = 'состояние  туалета';
+        $textdata['mzambulatoria_35'][4] = 'отсутствие  питьевой воды';
+        $textdata['mzambulatoria_35'][5] = 'санитарные условия';
+        $textdata['mzambulatoria_35'][6] = 'отсутствие мест для детских колясок';
+
+        $textdata['mzambulatoria_36'][1] = 'да';
+        $textdata['mzambulatoria_36'][2] = 'нет';
+
+        $textdata['mzambulatoria_37'][1] = 'I группа';
+        $textdata['mzambulatoria_37'][2] = 'II группа';
+        $textdata['mzambulatoria_37'][3] = 'III группа';
+        $textdata['mzambulatoria_37'][4] = 'ребенок-инвалид';
+
+        $textdata['mzambulatoria_38'][1] = 'да';
+        $textdata['mzambulatoria_38'][2] = 'нет';
+
+        $textdata['mzambulatoria_39'][1] = 'отсутствие выделенного места стоянки автотранспортных средств для инвалидов';
+        $textdata['mzambulatoria_39'][2] = 'отсутствие пандусов, поручней';
+        $textdata['mzambulatoria_39'][3] = 'отсутствие подъемных платформ (аппарелей)';
+        $textdata['mzambulatoria_39'][4] = 'отсутствие адаптированных лифтов';
+        $textdata['mzambulatoria_39'][5] = 'отсутствие сменных кресел-колясок';
+        $textdata['mzambulatoria_39'][6] = 'отсутствие  информационных бегущих строк,  информационных стендов, голосовых сигналов';
+        $textdata['mzambulatoria_39'][7] = 'отсутствие информации шрифтом Брайля';
+        $textdata['mzambulatoria_39'][8] = 'отсутствие доступных санитарно-гигиенических помещений';
+        $textdata['mzambulatoria_39'][9] = 'отсутствие сопровождающих работников';
+
+        $textdata['mzambulatoria_40'][1] = '14 календарных дней и более';
+        $textdata['mzambulatoria_40'][2] = '13 календарных дней';
+        $textdata['mzambulatoria_40'][3] = '12 календарных дней';
+        $textdata['mzambulatoria_40'][4] = '10 календарных дней';
+        $textdata['mzambulatoria_40'][5] = '7 календарных дней';
+        $textdata['mzambulatoria_40'][6] = 'меньше 7 календарных дней';
+        $textdata['mzambulatoria_40'][7] = 'не назначалось';
+
+        $textdata['mzambulatoria_41'][1] = 'да';
+        $textdata['mzambulatoria_41'][2] = 'нет';
+
+        $textdata['mzambulatoria_42'][1] = 'да';
+        $textdata['mzambulatoria_42'][2] = 'нет';
+
+        $textdata['mzambulatoria_43'][1] = 'да';
+        $textdata['mzambulatoria_43'][2] = 'нет';
+
+        $textdata['mzambulatoria_44'][1] = 'да';
+        $textdata['mzambulatoria_44'][2] = 'нет';
+
+        $textdata['mzambulatoria_45'][1] = 'да';
+        $textdata['mzambulatoria_45'][2] = 'нет';
+
+        $textdata['mzambulatoria_46'][1] = 'да';
+        $textdata['mzambulatoria_46'][2] = 'нет';
+
+        $textdata['mzambulatoria_47'][1] = '30 календарных дней и более';
+        $textdata['mzambulatoria_47'][2] = '29 календарных дней';
+        $textdata['mzambulatoria_47'][3] = '28 календарных дней';
+        $textdata['mzambulatoria_47'][4] = '27 календарных дней';
+        $textdata['mzambulatoria_47'][5] = '15 календарных дней';
+        $textdata['mzambulatoria_47'][6] = 'меньше 15 календарных дней';
+        $textdata['mzambulatoria_47'][7] = 'не назначалось';
+
+        $textdata['mzambulatoria_48'][1] = 'да';
+        $textdata['mzambulatoria_48'][2] = 'нет';
+
+        $textdata['mzambulatoria_49'][1] = 'да';
+        $textdata['mzambulatoria_49'][2] = 'нет';
+
+        $textdata['mzambulatoria_50'][1] = 'да';
+        $textdata['mzambulatoria_50'][2] = 'нет';
+
+        $textdata['mzambulatoria_51'][1] = 'да';
+        $textdata['mzambulatoria_51'][2] = 'нет';
+
+        $textdata['mzambulatoria_52'][1] = 'да';
+        $textdata['mzambulatoria_52'][2] = 'нет';
+
+        $textdata['mzambulatoria_53'][1] = 'да';
+        $textdata['mzambulatoria_53'][2] = 'нет';
+
+        $textdata['mzambulatoria_54'][1] = 'да';
+        $textdata['mzambulatoria_54'][2] = 'нет';
+
+        $textdata['mzambulatoria_55'][1] = 'да';
+        $textdata['mzambulatoria_55'][2] = 'нет';
+
+        $textdata['mzambulatoria_56'][1] = 'за счет ОМС, бюджета';
+        $textdata['mzambulatoria_56'][2] = 'за счет ДМС';
+        $textdata['mzambulatoria_56'][3] = 'на платной основе';
+
+        $textdata['mzambulatoria_57'][1] = 'да';
+        $textdata['mzambulatoria_57'][2] = 'нет';
+
+        $textdata['mzambulatoria_58'][1] = 'раз в месяц';
+        $textdata['mzambulatoria_58'][2] = 'раз в квартал';
+        $textdata['mzambulatoria_58'][3] = 'раз в полугодие';
+        $textdata['mzambulatoria_58'][4] = 'раз в год';
+        $textdata['mzambulatoria_58'][5] = 'не обращаюсь';
+
+        $textdata['mzambulatoria_59'][1] = 'раз в месяц';
+        $textdata['mzambulatoria_59'][2] = 'раз в квартал';
+        $textdata['mzambulatoria_59'][3] = 'раз в полугодие';
+        $textdata['mzambulatoria_59'][4] = 'раз в год';
+        $textdata['mzambulatoria_59'][5] = 'не обращаюсь';
+ 
+        $textdata['mzambulatoria_60'][1] = 'да';
+        $textdata['mzambulatoria_60'][2] = 'нет';
+
+        $textdata['mzambulatoria_61'][1] = 'положительный';
+        $textdata['mzambulatoria_61'][2] = 'отрицательный';
+
+        $textdata['mzambulatoria_62'][1] = 'да';
+        $textdata['mzambulatoria_62'][2] = 'нет';
+
+        $textdata['mzambulatoria_63'][1] = 'я сам (а)';
+        $textdata['mzambulatoria_63'][2] = 'персонал медицинской организации';
+
+        $textdata['mzambulatoria_64'][1] = 'письменная благодарность (в журнале, на сайте)';
+        $textdata['mzambulatoria_64'][2] = 'цветы';
+        $textdata['mzambulatoria_64'][3] = 'подарки';
+        $textdata['mzambulatoria_64'][4] = 'услуги';
+        $textdata['mzambulatoria_64'][5] = 'деньги';
+        return $textdata;
+
+   }
 }
