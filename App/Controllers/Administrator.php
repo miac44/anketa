@@ -68,4 +68,9 @@ class Administrator extends Controller
         $this->view->display(__DIR__ . '/../Views/ok.php');
 
     }
+
+    protected function actionIntermediateForm()
+    {
+        $this->view->display(__DIR__ . '/../Views/admin_intermediateform.php');
+    }
 }
