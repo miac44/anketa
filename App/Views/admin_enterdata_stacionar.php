@@ -10,6 +10,7 @@
     <div class="col-md-12">
     <form name="savedata_stacionar" action="/administrator/savedata/?id=<?php echo $id; ?>" method="POST">
     <input name="class" type="hidden" value="MZstacionar">
+    <input name="id" type="hidden" value="<?php echo $id; ?>">
       <table class="table table-bordered">
         <thead>
           <tr>

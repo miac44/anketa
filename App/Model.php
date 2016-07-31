@@ -55,6 +55,25 @@ abstract class Model
         $this->id = $db->getLastInsertId();
     }
 
+    public function insertwithid()
+    {
+        $columns = [];
+        $values = [];
+        foreach ($this as $k => $v) {
+            $columns[] = $k;
+            $values[':'.$k] = $v;
+        }
+        $sql = '
+            INSERT INTO ' . static::TABLE . '
+            (' . implode(',', $columns) . ')
+            VALUES
+            (' . implode(',', array_keys($values)) . ')
+                    ';
+        $db = Db::instance();
+        $db->execute($sql, $values);
+        $this->id = $db->getLastInsertId();
+    }
+
     public function update()
     {
         $values = [];

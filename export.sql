@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `MZstacionar` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL,
   `count` int(11) NOT NULL DEFAULT '0',
   `mzstacionar_02_1` int(11) NOT NULL DEFAULT '0',
   `mzstacionar_02_2` int(11) NOT NULL DEFAULT '0',
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `MZstacionar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `MZambulatoria` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL,
   `count` int(11) NOT NULL DEFAULT '0',
   `mzambulatoria_02_1` int(11) NOT NULL DEFAULT '0',
   `mzambulatoria_02_2` int(11) NOT NULL DEFAULT '0',

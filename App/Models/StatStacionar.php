@@ -10,7 +10,7 @@ class StatStacionar extends Model
     public $ambulance;
     public $id;
     public $countbytype = array(0);
-    public $mzstat;
+    public $mzstacionar;
 
     public function __construct($ambulance)
     {
@@ -20,12 +20,13 @@ class StatStacionar extends Model
         $res = $db->queryRaw($sql, array('ambulance' => $ambulance ));
         foreach ($res as $value) {
             $this->countbytype[$value['type']] = (int)$value['count'];
-        }
+        };
         $sql = 'SELECT id FROM ambulances WHERE name=:ambulance';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $ambulance ));
-        $this->id = $res['id'];
-        $mzstat = \App\Models\MZstacionar::findById($this->id);
+        $this->id = $res[0]['id'];
+        $this->mzstacionar = \App\Models\MZstacionar::findById($this->id);
+        $this->countbytype['mz'] = (int)$this->mzstacionar->count;
     }
 
     private function getPointsFromPercentDefault($percent)
@@ -84,56 +85,74 @@ class StatStacionar extends Model
 
     public function get_1_4()
     {
-        $stat = $this->getStatPerYes('row16');
+        $sitestat = $this->getStatPerYes('row16');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_22_1,$this->mzstacionar->mzstacionar_22_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_1_5()
     {
-        $stat = $this->getStatPerYes('row14');
+        $sitestat = $this->getStatPerYes('row14');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_20_1,$this->mzstacionar->mzstacionar_20_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_2_1()
     {
-        $stat = $this->getStatPerYes('row25');
+        $sitestat = $this->getStatPerYes('row25');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_31_1,$this->mzstacionar->mzstacionar_31_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_2_2()
     {
-        $stat = $this->getStatPerYes('row18');
+        $sitestat = $this->getStatPerYes('row18');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_24_1,$this->mzstacionar->mzstacionar_24_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_2_3()
     {
-        $stat = $this->getStatPerYes('row21');
+        $sitestat = $this->getStatPerYes('row21');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_27_1,$this->mzstacionar->mzstacionar_27_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentVariant1($stat->getPercent());
         return $stat;
     }
 
     public function get_2_4()
     {
-        $stat = $this->getStatPerYes('row20');
+        $sitestat = $this->getStatPerYes('row20');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_26_1,$this->mzstacionar->mzstacionar_26_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentVariant1($stat->getPercent());
         return $stat;
     }
 
     public function get_2_5()
     {
-        $stat = $this->getStatPerYes('row11');
+        $all = $this->getStatPerYes('row25')->count_true+$this->mzstacionar->mzstacionar_31_1;
+        $invalid = $this->getStatPerYes('row9')->count_true+$this->mzstacionar->mzstacionar_15_1;
+        if ($all==0) {
+            $percent = 0;
+        } else {
+            $percent = round(100/$all*$invalid);
+        }
         $points = 0;
-        $percent = $stat->getPercent();
         if ($percent>=70) $points++;
         if ($percent>=65) $points++;
         if ($percent>=60) $points++;
         if ($percent>=55) $points++;
         if ($percent>=50) $points++;
+        $stat = new Stat();
         $stat->points = $points;
         return $stat;
     }
@@ -143,23 +162,23 @@ class StatStacionar extends Model
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="до 30 мин"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $a = (int)$res[0]['count'];
+        $a = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_5;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="до 45 мин"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $b = (int)$res[0]['count'];
+        $b = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_4;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="до 60 мин"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $c = (int)$res[0]['count'];
+        $c = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_3;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="до 90 мин"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $d = (int)$res[0]['count'];
+        $d = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_2;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="90 мин и более"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $e = (int)$res[0]['count'];
+        $e = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_1;
         if ($a+$b+$c+$d+$e==0){
             $time = 99999;
         } else {
@@ -181,27 +200,27 @@ class StatStacionar extends Model
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="меньше 15 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $a = (int)$res[0]['count'];
+        $a = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_6;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="15 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $b = (int)$res[0]['count'];
+        $b = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_5;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="27 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $c = (int)$res[0]['count'];
+        $c = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_4;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="28 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $d = (int)$res[0]['count'];
+        $d = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_3;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="29 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $e = (int)$res[0]['count'];
+        $e = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_2;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="30 календарных дней и более"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $f = (int)$res[0]['count'];
+        $f = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_1;
         if ($a+$b+$c+$d+$e==0){
             $time = 99999;
         } else {
@@ -220,38 +239,53 @@ class StatStacionar extends Model
 
     public function get_3_3()
     {
-        $stat = $this->getStatPerYes('row3');
+        $sitestat = $this->getStatPerYes('row3');
+        $count_true = $this->mzstacionar->mzstacionar_4_1 + $this->mzstacionar->mzstacionar_5_1 + $this->mzstacionar->mzstacionar_6_1 + $this->mzstacionar->mzstacionar_7_1 + $this->mzstacionar->mzstacionar_8_1 + $this->mzstacionar->mzstacionar_9_1;
+        $count_false = this->mzstacionar->mzstacionar_4_2 + $this->mzstacionar->mzstacionar_5_2 + $this->mzstacionar->mzstacionar_6_2 + $this->mzstacionar->mzstacionar_7_2 + $this->mzstacionar->mzstacionar_8_2 + $this->mzstacionar->mzstacionar_9_2;
+
+        $mzstat = new Stat($count_true,$count_false);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_4_1()
     {
-        $stat = $this->getStatPerYes('row19');
+        $sitestat = $this->getStatPerYes('row19');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_25_1,$this->mzstacionar->mzstacionar_25_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
     public function get_4_2()
     {
-        $stat = $this->getStatPerYes('row23');
+        $sitestat = $this->getStatPerYes('row23');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_29_1,$this->mzstacionar->mzstacionar_29_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
     public function get_5_1()
     {
-        $stat = $this->getStatPerYes('row27');
+        $sitestat = $this->getStatPerYes('row27');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_33_1,$this->mzstacionar->mzstacionar_33_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
     public function get_5_2()
     {
-        $stat = $this->getStatPerYes('row29');
+        $sitestat = $this->getStatPerYes('row29');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_35_1,$this->mzstacionar->mzstacionar_35_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
     public function get_5_3()
     {
-        $stat = $this->getStatPerYes('row28');
+        $sitestat = $this->getStatPerYes('row28');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_34_1,$this->mzstacionar->mzstacionar_34_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }

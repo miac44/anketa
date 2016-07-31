@@ -69,7 +69,7 @@ class Administrator extends Controller
             if ($k != "class") $data->$k = (int)$v;
         }
         if (!$exist){
-            $data->insert();
+            $data->insertwithid();
         } else {
             $data->update();
         }
