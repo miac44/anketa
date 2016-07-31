@@ -241,7 +241,7 @@ class StatStacionar extends Model
     {
         $sitestat = $this->getStatPerYes('row3');
         $count_true = $this->mzstacionar->mzstacionar_4_1 + $this->mzstacionar->mzstacionar_5_1 + $this->mzstacionar->mzstacionar_6_1 + $this->mzstacionar->mzstacionar_7_1 + $this->mzstacionar->mzstacionar_8_1 + $this->mzstacionar->mzstacionar_9_1;
-        $count_false = this->mzstacionar->mzstacionar_4_2 + $this->mzstacionar->mzstacionar_5_2 + $this->mzstacionar->mzstacionar_6_2 + $this->mzstacionar->mzstacionar_7_2 + $this->mzstacionar->mzstacionar_8_2 + $this->mzstacionar->mzstacionar_9_2;
+        $count_false = $this->mzstacionar->mzstacionar_4_2 + $this->mzstacionar->mzstacionar_5_2 + $this->mzstacionar->mzstacionar_6_2 + $this->mzstacionar->mzstacionar_7_2 + $this->mzstacionar->mzstacionar_8_2 + $this->mzstacionar->mzstacionar_9_2;
 
         $mzstat = new Stat($count_true,$count_false);
         $stat = $this->getStatPerYES_new($sitestat,$mzstat);
