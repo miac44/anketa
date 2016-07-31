@@ -20,6 +20,13 @@ class StatAmbulatoria extends Model
         foreach ($res as $value) {
             $this->countbytype[$value['type']] = (int)$value['count'];
         }
+        $sql = 'SELECT id FROM ambulances WHERE name=:ambulance';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $ambulance ));
+        $this->id = $res[0]['id'];
+        $this->mzambulatoria = \App\Models\MZambulatoria::findById($this->id);
+        $this->countbytype['mz'] = (int)$this->mzambulatoria->count;
+
     }
 
     private function getPointsFromPercentDefault($percent)
@@ -49,6 +56,11 @@ class StatAmbulatoria extends Model
         return $stat;
     }
 
+    private function getStatPerYES_new($stat, $stat_mz){
+        return new Stat($stat->count_true+$stat_mz->count_true, $stat->count_false+$stat_mz->count_false);
+    }
+
+
     public function get_1_2()
     {
         $stat = new Stat();
@@ -66,21 +78,27 @@ class StatAmbulatoria extends Model
     public function get_1_4()
     {
 
-        $stat = $this->getStatPerYes('row50');
+        $sitestat = $this->getStatPerYes('row50');
+        $mzstat = new Stat($this->mzambulatoria->mzambulatoria_31_1,$this->mzambulatoria->mzambulatoria_31_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_1_5()
     {
-        $stat = $this->getStatPerYes('row52');
+        $sitestat = $this->getStatPerYes('row52');
+        $mzstat = new Stat($this->mzambulatoria->mzambulatoria_33_1,$this->mzambulatoria->mzambulatoria_33_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_2_1()
     {
-        $stat = $this->getStatPerYes('row45');
+        $sitestat = $this->getStatPerYes('row45');
+        $mzstat = new Stat($this->mzambulatoria->mzambulatoria_26_1,$this->mzambulatoria->mzambulatoria_26_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
@@ -91,27 +109,27 @@ class StatAmbulatoria extends Model
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="менее 7 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $a = (int)$res[0]['count'];
+        $a = (int)$res[0]['count'] + $this->mzambulatoria->mzambulatoria_21_6 + $this->mzambulatoria->mzambulatoria_25_6;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="7 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $b = (int)$res[0]['count'];
+        $b = (int)$res[0]['count'] + $this->mzambulatoria->mzambulatoria_21_5 + $this->mzambulatoria->mzambulatoria_25_5;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="10 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $c = (int)$res[0]['count'];
+        $c = (int)$res[0]['count'] + $this->mzambulatoria->mzambulatoria_21_4 + $this->mzambulatoria->mzambulatoria_25_4;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="12 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $d = (int)$res[0]['count'];
+        $d = (int)$res[0]['count'] + $this->mzambulatoria->mzambulatoria_21_3 + $this->mzambulatoria->mzambulatoria_25_3;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="13 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $e = (int)$res[0]['count'];
+        $e = (int)$res[0]['count'] + $this->mzambulatoria->mzambulatoria_21_2 + $this->mzambulatoria->mzambulatoria_25_2;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="14 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $f = (int)$res[0]['count'];
+        $f = (int)$res[0]['count'] + $this->mzambulatoria->mzambulatoria_21_1 + $this->mzambulatoria->mzambulatoria_25_1;
         if ($a+$b+$c+$d+$e+$f==0){
             $time = 99999;
         } else {
@@ -138,15 +156,24 @@ class StatAmbulatoria extends Model
 
     public function get_2_4()
     {
-        $stat = $this->getStatPerYes('row53');
+        $sitestat = $this->getStatPerYes('row53');
+        $mzstat = new Stat($this->mzambulatoria->mzambulatoria_34_1,$this->mzambulatoria->mzambulatoria_34_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_2_5()
     {
-        $stat = $this->getStatPerYes('row57');
-        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        $all = $this->getStatPerYes('row53')->count_true+$this->mzambulatoria->mzambulatoria_34_1;
+        $invalid = $this->getStatPerYes('row55')->count_true+$this->mzambulatoria->mzambulatoria_36_1;
+        if ($all==0) {
+            $percent = 0;
+        } else {
+            $percent = round(100/$all*$invalid);
+        }
+        $stat = new Stat();
+        $stat->points = $this->getPointsFromPercentDefault($percent);
         return $stat;
     }
 
@@ -156,27 +183,27 @@ class StatAmbulatoria extends Model
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="менее 7 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $a = (int)$res[0]['count'];
+        $a = (int)$res[0]['count']+$this->mzambulatoria->mzambulatoria_40_6;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="7 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $b = (int)$res[0]['count'];
+        $b = (int)$res[0]['count']+$this->mzambulatoria->mzambulatoria_40_5;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="10 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $c = (int)$res[0]['count'];
+        $c = (int)$res[0]['count']+$this->mzambulatoria->mzambulatoria_40_4;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="12 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $d = (int)$res[0]['count'];
+        $d = (int)$res[0]['count']+$this->mzambulatoria->mzambulatoria_40_3;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="13 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $e = (int)$res[0]['count'];
+        $e = (int)$res[0]['count']+$this->mzambulatoria->mzambulatoria_40_2;
         $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND ' . $row . '="14 календарных дней"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $f = (int)$res[0]['count'];
+        $f = (int)$res[0]['count']+$this->mzambulatoria->mzambulatoria_40_1;
         if ($a+$b+$c+$d+$e+$f==0){
             $time = 99999;
         } else {
@@ -194,39 +221,58 @@ class StatAmbulatoria extends Model
     }
     public function get_3_2()
     {
-        $stat = $this->getStatPerYes('row48');
+        $sitestat = $this->getStatPerYes('row48');
+        $mzstat = new Stat($this->mzambulatoria->mzambulatoria_29_1,$this->mzambulatoria->mzambulatoria_29_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_3_3()
     {
-        $stat = $this->getStatPerYes('row60');
+        $count_true = $this->mzambulatoria->mzambulatoria_41_1 + $this->mzambulatoria->mzambulatoria_42_1 + $this->mzambulatoria->mzambulatoria_43_1 + $this->mzambulatoria->mzambulatoria_44_1 + $this->mzambulatoria->mzambulatoria_45_1 + $this->mzambulatoria->mzambulatoria_46_1;
+        $count_false = $this->mzambulatoria->mzambulatoria_41_2 + $this->mzambulatoria->mzambulatoria_42_2 + $this->mzambulatoria->mzambulatoria_43_2 + $this->mzambulatoria->mzambulatoria_44_2 + $this->mzambulatoria->mzambulatoria_45_2 + $this->mzambulatoria->mzambulatoria_46_2;
+        $sitestat = $this->getStatPerYes('row60');
+        $mzstat = new Stat($count_true, $count_false);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
 
     public function get_4_1()
     {
-        $stat = $this->getStatPerYes('row41');
+        $count_true = $this->mzambulatoria->mzambulatoria_3_1 + $this->mzambulatoria->mzambulatoria_8_1 + $this->mzambulatoria->mzambulatoria_13_1 + $this->mzambulatoria->mzambulatoria_18_1 + $this->mzambulatoria->mzambulatoria_22_1;
+        $count_false = $this->mzambulatoria->mzambulatoria_3_2 + $this->mzambulatoria->mzambulatoria_8_2 + $this->mzambulatoria->mzambulatoria_13_2 + $this->mzambulatoria->mzambulatoria_18_2 + $this->mzambulatoria->mzambulatoria_22_2;
+        $sitestat = $this->getStatPerYes('row41');
+        $mzstat = new Stat($count_true, $count_false);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
     public function get_4_2()
     {
-        $stat = $this->getStatPerYes('row42');
+        $count_true = $this->mzambulatoria->mzambulatoria_4_1 + $this->mzambulatoria->mzambulatoria_9_1 + $this->mzambulatoria->mzambulatoria_14_1 + $this->mzambulatoria->mzambulatoria_19_1 + $this->mzambulatoria->mzambulatoria_23_1;
+        $count_false = $this->mzambulatoria->mzambulatoria_4_2 + $this->mzambulatoria->mzambulatoria_9_2 + $this->mzambulatoria->mzambulatoria_14_2 + $this->mzambulatoria->mzambulatoria_19_2 + $this->mzambulatoria->mzambulatoria_23_2;
+        $sitestat = $this->getStatPerYes('row42');
+        $mzstat = new Stat($count_true, $count_false);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);        
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
     public function get_5_1()
     {
-        $stat = $this->getStatPerYes('row63');
+        $sitestat = $this->getStatPerYes('row63');
+        $mzstat = new Stat($this->mzambulatoria->mzambulatoria_54_1,$this->mzambulatoria->mzambulatoria_54_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
+
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }
     public function get_5_2()
     {
-        $stat = $this->getStatPerYes('row64');
+        $sitestat = $this->getStatPerYes('row64');
+        $mzstat = new Stat($this->mzambulatoria->mzambulatoria_55_1,$this->mzambulatoria->mzambulatoria_55_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
     }

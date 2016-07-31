@@ -63,7 +63,7 @@
             <tr>
                 <td><?php echo $ambulance->id; ?></td>
                 <td><?php echo $ambulance->name; ?></td>
-                <td><?php echo $ambulance->ambulatoria->getCountByType('Сайт'); ?>+<?php echo $ambulance->ambulatoria->getCountByType('Вручную'); ?>=<?php echo $ambulance->ambulatoria->getCount(); ?></td>
+                <td><?php echo $ambulance->ambulatoria->getCountByType('Сайт'); ?>+<?php echo $ambulance->ambulatoria->getCountByType('Вручную'); ?>+<?php echo $ambulance->ambulatoria->getCountByType('mz'); ?>=<?php echo $ambulance->ambulatoria->getCount(); ?></td>
                 <td>-</td>
                 <td class="text-center"><?php echo $ambulance->ambulatoria->get_1_2()->points; ?></td>
                 <td class="text-center"><?php echo $ambulance->ambulatoria->get_1_3()->points; ?></td>
