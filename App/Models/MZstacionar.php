@@ -12,52 +12,10 @@ class MZstacionar extends Model
 
     public $id;
     public $count;
-//    public $mzstacionar_01;
-    public $mzstacionar_02;
-    public $mzstacionar_03;
-    public $mzstacionar_04;
-    public $mzstacionar_05;
-    public $mzstacionar_06;
-    public $mzstacionar_07;
-    public $mzstacionar_08;
-    public $mzstacionar_09;
-    public $mzstacionar_10;
-    public $mzstacionar_11;
-    public $mzstacionar_12;
-    public $mzstacionar_13;
-    public $mzstacionar_14;
-    public $mzstacionar_15;
-    public $mzstacionar_16;
-    public $mzstacionar_17;
-    public $mzstacionar_18;
-    public $mzstacionar_19;
-    public $mzstacionar_20;
-    public $mzstacionar_21;
-    public $mzstacionar_22;
-    public $mzstacionar_23;
-    public $mzstacionar_24;
-    public $mzstacionar_25;
-    public $mzstacionar_26;
-    public $mzstacionar_27;
-    public $mzstacionar_28;
-    public $mzstacionar_29;
-    public $mzstacionar_30;
-    public $mzstacionar_31;
-    public $mzstacionar_32;
-    public $mzstacionar_33;
-    public $mzstacionar_34;
-    public $mzstacionar_35;
-    public $mzstacionar_36;
-    public $mzstacionar_37;
-    public $mzstacionar_38;
-    public $mzstacionar_39;
-    public $mzstacionar_40;
 
-    static public function textData()
+    static public function textQuestion()
     {
         $textdata = [];
-        $textdata['count'] = 'Количество';
-//        $textdata['mzstacionar_01'] = '1. Месяц и год обращения в данную медицинскую организацию';
         $textdata['mzstacionar_02'] = '2. Госпитализация была:';
         $textdata['mzstacionar_03'] = '3. Срок ожидания плановой госпитализации с момента получения направления на плановую госпитализацию?';
         $textdata['mzstacionar_04'] = '4. Вы были госпитализированы в назначенный срок?';
@@ -98,6 +56,156 @@ class MZstacionar extends Model
         $textdata['mzstacionar_39'] = '39. Кто был инициатором благодарения?';
         $textdata['mzstacionar_40'] = '40. Форма благодарения:';
         return $textdata;
-
     }
+
+    static public function textValue()
+    {
+        $textdata = [];
+        $textdata['mzstacionar_02'][1] = 'плановая';
+        $textdata['mzstacionar_02'][2] = 'экстренная';
+
+        $textdata['mzstacionar_03'][1] = '30 календарных дней и более';
+        $textdata['mzstacionar_03'][2] = '29 календарных дней';
+        $textdata['mzstacionar_03'][3] = '28 календарных  дней';
+        $textdata['mzstacionar_03'][4] = '27 календарных  дней';
+        $textdata['mzstacionar_03'][5] = '15 календарных  дней';
+        $textdata['mzstacionar_03'][6] = 'меньше 15 календарных  дней';
+
+        $textdata['mzstacionar_04'][1] = 'да';
+        $textdata['mzstacionar_04'][2] = 'нет';
+
+        $textdata['mzstacionar_05'][1] = 'да';
+        $textdata['mzstacionar_05'][2] = 'нет';
+
+        $textdata['mzstacionar_06'][1] = 'да';
+        $textdata['mzstacionar_06'][2] = 'нет';
+
+        $textdata['mzstacionar_07'][1] = 'да';
+        $textdata['mzstacionar_07'][2] = 'нет';
+
+        $textdata['mzstacionar_08'][1] = 'да';
+        $textdata['mzstacionar_08'][2] = 'нет';
+
+        $textdata['mzstacionar_09'][1] = 'да';
+        $textdata['mzstacionar_09'][2] = 'нет';
+
+        $textdata['mzstacionar_10'][1] = 'да';
+        $textdata['mzstacionar_10'][2] = 'нет';
+
+        $textdata['mzstacionar_11'][1] = 'состояние  гардероба';
+        $textdata['mzstacionar_11'][2] = 'отсутствие  свободных мест ожидания';
+        $textdata['mzstacionar_11'][3] = 'состояние туалета';
+        $textdata['mzstacionar_11'][4] = 'отсутствие  питьевой воды';
+        $textdata['mzstacionar_11'][5] = 'санитарные  условия';
+
+        $textdata['mzstacionar_12'][1] = '90 мин и более';
+        $textdata['mzstacionar_12'][2] = 'до 90 мин';
+        $textdata['mzstacionar_12'][3] = 'до 60 мин';
+        $textdata['mzstacionar_12'][4] = 'до 45 мин';
+        $textdata['mzstacionar_12'][5] = 'до 30 мин';
+
+        $textdata['mzstacionar_13'][1] = 'да';
+        $textdata['mzstacionar_13'][2] = 'нет';
+
+        $textdata['mzstacionar_14'][1] = 'за счет ОМС, бюджета';
+        $textdata['mzstacionar_14'][2] = 'за счет ДМС';
+        $textdata['mzstacionar_14'][3] = 'на платной основе';
+
+        $textdata['mzstacionar_15'][1] = 'да';
+        $textdata['mzstacionar_15'][2] = 'нет';
+
+        $textdata['mzstacionar_16'][1] = 'I группа';
+        $textdata['mzstacionar_16'][2] = 'II группа';
+        $textdata['mzstacionar_16'][3] = 'III группа';
+        $textdata['mzstacionar_16'][4] = 'ребенок-инвалид';
+
+        $textdata['mzstacionar_17'][1] = 'да';
+        $textdata['mzstacionar_17'][2] = 'нет';
+
+        $textdata['mzstacionar_18'][1] = 'отсутствие выделенного места стоянки автотранспортных средств для инвалидов';
+        $textdata['mzstacionar_18'][2] = 'отсутствие пандусов, поручней';
+        $textdata['mzstacionar_18'][3] = 'отсутствие подъемных платформ (аппарелей)';
+        $textdata['mzstacionar_18'][4] = 'отсутствие адаптированных лифтов';
+        $textdata['mzstacionar_18'][5] = 'отсутствие сменных кресел-колясок';
+        $textdata['mzstacionar_18'][6] = 'отсутствие информационных бегущих строк, информационных стендов, голосовых сигналов';
+        $textdata['mzstacionar_18'][7] = 'отсутствие информации шрифтом Брайля';
+        $textdata['mzstacionar_18'][8] = 'отсутствие доступных санитарно-гигиенических помещений';
+        $textdata['mzstacionar_18'][9] = 'отсутствие сопровождающих работников';
+
+        $textdata['mzstacionar_19'][1] = 'да';
+        $textdata['mzstacionar_19'][2] = 'нет';
+
+        $textdata['mzstacionar_20'][1] = 'да';
+        $textdata['mzstacionar_20'][2] = 'нет';
+
+        $textdata['mzstacionar_21'][1] = 'да';
+        $textdata['mzstacionar_21'][2] = 'нет';
+
+        $textdata['mzstacionar_22'][1] = 'да';
+        $textdata['mzstacionar_22'][2] = 'нет';
+
+        $textdata['mzstacionar_23'][1] = 'круглосуточного пребывания';
+        $textdata['mzstacionar_23'][2] = 'дневного стационара';
+
+        $textdata['mzstacionar_24'][1] = 'да';
+        $textdata['mzstacionar_24'][2] = 'нет';
+
+        $textdata['mzstacionar_25'][1] = 'да';
+        $textdata['mzstacionar_25'][2] = 'нет';
+
+        $textdata['mzstacionar_26'][1] = 'да';
+        $textdata['mzstacionar_26'][2] = 'нет';
+
+        $textdata['mzstacionar_27'][1] = 'да';
+        $textdata['mzstacionar_27'][2] = 'нет';
+
+        $textdata['mzstacionar_28'][1] = 'для уточнения диагноза';
+        $textdata['mzstacionar_28'][2] = 'приобретение расходных материалов';
+        $textdata['mzstacionar_28'][3] = 'с целью сокращения срока лечения';
+
+        $textdata['mzstacionar_29'][1] = 'да';
+        $textdata['mzstacionar_29'][2] = 'нет';
+
+        $textdata['mzstacionar_30'][1] = 'Вам не разъяснили информацию о состоянии здоровья';
+        $textdata['mzstacionar_30'][2] = 'Вам не дали рекомендации по диагностике, лечению и реабилитации';
+        $textdata['mzstacionar_30'][3] = 'Вам не дали выписку';
+
+        $textdata['mzstacionar_31'][1] = 'да';
+        $textdata['mzstacionar_31'][2] = 'нет';
+
+        $textdata['mzstacionar_32'][1] = 'освещение, температурный  режим';
+        $textdata['mzstacionar_32'][2] = 'медицинской организации требуется ремонт';
+        $textdata['mzstacionar_32'][3] = 'в медицинской организации старая мебель';
+        $textdata['mzstacionar_32'][4] = 'уборка помещений';
+
+        $textdata['mzstacionar_33'][1] = 'да';
+        $textdata['mzstacionar_33'][2] = 'нет';
+
+        $textdata['mzstacionar_34'][1] = 'да';
+        $textdata['mzstacionar_34'][2] = 'нет';
+
+        $textdata['mzstacionar_35'][1] = 'да';
+        $textdata['mzstacionar_35'][2] = 'нет';
+
+        $textdata['mzstacionar_36'][1] = 'да';
+        $textdata['mzstacionar_36'][2] = 'нет';
+
+        $textdata['mzstacionar_37'][1] = 'положительный';
+        $textdata['mzstacionar_37'][2] = 'отрицательный';
+
+        $textdata['mzstacionar_38'][1] = 'да';
+        $textdata['mzstacionar_38'][2] = 'нет';
+
+        $textdata['mzstacionar_39'][1] = 'я сам (а)';
+        $textdata['mzstacionar_39'][2] = 'персонал медицинской организации';
+
+        $textdata['mzstacionar_40'][1] = 'письменная благодарность (в журнале, на сайте)';
+        $textdata['mzstacionar_40'][2] = 'цветы';
+        $textdata['mzstacionar_40'][3] = 'подарки';
+        $textdata['mzstacionar_40'][4] = 'услуги';
+        $textdata['mzstacionar_40'][5] = 'деньги';
+
+        return $textdata;
+    }
+
 }

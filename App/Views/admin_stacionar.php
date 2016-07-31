@@ -6,7 +6,7 @@
         <tr>
             <th rowspan="3" class="text-center">id</th>
             <th rowspan="3" class="text-center">МО</th>
-            <th rowspan="3" class="text-center">Кол-во</th>
+            <th rowspan="3" class="text-center">Кол-во (сайт + вручную + МЗ)</th>
             <th colspan="5" class="text-center">1. Показатели, характеризующие открытость и доступность информации о медицинской организации</th>
             <th rowspan="3" class="text-center info">ИТОГО по п.1</th>
             <th colspan="5" class="text-center">2. Показатели, характеризующие комфортность условий предоставления медицинских услуг и доступность их получения</th>

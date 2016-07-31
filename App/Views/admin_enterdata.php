@@ -7,13 +7,17 @@
         <tr>
           <th class="text-center">id</th>
           <th class="text-center">МО</th>
+          <th class="text-center">СТАЦИОНАР</th>
+          <th class="text-center">АМБУЛАТОРИЯ</th>
         </tr>
       </thead>
       <tbody>
       <?php foreach ($ambulances as $ambulance) : ?>
         <tr>
           <td><?php echo $ambulance->id; ?></td>
-          <td><a href="/administrator/enter_data/?id=<?php echo $ambulance->id; ?>"><?php echo $ambulance->name; ?></a></td>
+          <td><?php echo $ambulance->name; ?></td>
+          <td><a href="/administrator/enterdata_stacionar/?id=<?php echo $ambulance->id; ?>">ввести данные</a></td>
+          <td><a href="/administrator/enterdata_ambulatoria/?id=<?php echo $ambulance->id; ?>">ввести данные</a></td>
         </tr>
       <?php endforeach; ?>  
       </tbody>

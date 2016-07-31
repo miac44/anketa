@@ -27,22 +27,32 @@ class Administrator extends Controller
         $this->view->display(__DIR__ . '/../Views/admin_ambulatoria.php');
     }
 
-    protected function actionEnter_data()
+    protected function actionEnterdata()
     {
-        if (!isset($_REQUEST['id'])){
-            $this->view->title .= ' Ввод данных';
-            $this->view->ambulances = \App\Models\Ambulance::findAll();
-            $this->view->display(__DIR__ . '/../Views/admin_enter_data.php');
-        } else {
-            $this->view->ambulance = \App\Models\Ambulance::findById($_REQUEST['id']);
-            $this->view->id = $_REQUEST['id'];
-            $this->view->title .= " Ввод данных - " . $this->view->ambulance->name;
-            $this->view->mzstacionar = \App\Models\MZstacionar::findById($_REQUEST['id']);
-            $this->view->mzstacionar_textdata = \App\Models\MZstacionar::textData();
-            $this->view->mzambulatoria = \App\Models\MZambulatoria::findById($_REQUEST['id']);
-            $this->view->mzambulatoria_textdata = \App\Models\MZambulatoria::textData();
-            $this->view->display(__DIR__ . '/../Views/admin_enter_data_by_id.php');
-        }
+        $this->view->title .= ' Ввод данных';
+        $this->view->ambulances = \App\Models\Ambulance::findAll();
+        $this->view->display(__DIR__ . '/../Views/admin_enterdata.php');
+    }
+
+    protected function actionEnterdata_stacionar()
+    {
+        $this->view->ambulance = \App\Models\Ambulance::findById($_REQUEST['id']);
+        $this->view->id = $_REQUEST['id'];
+        $this->view->title .= " Ввод данных - " . $this->view->ambulance->name;
+        $this->view->mzstacionar = \App\Models\MZstacionar::findById($_REQUEST['id']);
+        $this->view->mzstacionar_textquestion = \App\Models\MZstacionar::textQuestion();
+        $this->view->mzstacionar_textvalue = \App\Models\MZstacionar::textValue();
+        $this->view->display(__DIR__ . '/../Views/admin_enterdata_stacionar.php');
+    }
+
+    protected function actionEnterdata_ambulatoria()
+    {
+        $this->view->ambulance = \App\Models\Ambulance::findById($_REQUEST['id']);
+        $this->view->id = $_REQUEST['id'];
+        $this->view->title .= " Ввод данных - " . $this->view->ambulance->name;
+        $this->view->mzambulatoria = \App\Models\MZambulatoria::findById($_REQUEST['id']);
+        $this->view->mzambulatoria_textdata = \App\Models\MZambulatoria::textData();
+        $this->view->display(__DIR__ . '/../Views/admin_enterdata_ambulatoria.php');
     }
 
     protected function actionSavedata()
@@ -63,8 +73,8 @@ class Administrator extends Controller
             $data->update();
         }
         $this->view->message = "Данные записаны";
-        $this->view->linktext = "Вернуться к МО";
-        $this->view->link = "/administrator/enter_data/?id=" . $_REQUEST['id'];
+        $this->view->linktext = "Вернуться к списку МО";
+        $this->view->link = "/administrator/enterdata/";
         $this->view->display(__DIR__ . '/../Views/ok.php');
 
     }

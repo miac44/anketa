@@ -8,7 +8,9 @@ class StatStacionar extends Model
 {
     const TABLE = 'anketa_stacionar';
     public $ambulance;
+    public $id;
     public $countbytype = array(0);
+    public $mzstat;
 
     public function __construct($ambulance)
     {
@@ -19,6 +21,11 @@ class StatStacionar extends Model
         foreach ($res as $value) {
             $this->countbytype[$value['type']] = (int)$value['count'];
         }
+        $sql = 'SELECT id FROM ambulances WHERE name=:ambulance';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $ambulance ));
+        $this->id = $res['id'];
+        $mzstat = \App\Models\MZstacionar::findById($this->id);
     }
 
     private function getPointsFromPercentDefault($percent)
@@ -57,6 +64,10 @@ class StatStacionar extends Model
         return $stat;
     }
 
+    private function getStatPerYES_new($stat, $stat_mz){
+        return new Stat($stat->count_true+$stat_mz->count_true, $stat->count_false+$stat_mz->count_false);
+    }
+
     public function get_1_2()
     {
         $stat = new Stat();
@@ -73,7 +84,6 @@ class StatStacionar extends Model
 
     public function get_1_4()
     {
-
         $stat = $this->getStatPerYes('row16');
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
