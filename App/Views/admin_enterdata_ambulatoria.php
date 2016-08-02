@@ -15,7 +15,7 @@
         <thead>
           <tr>
             <th colspan="2" class="text-center">
-              СТАЦИОНАР
+              АМБУЛАТОРИЯ
             </th>
           </tr>
         </thead>
