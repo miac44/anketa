@@ -39,6 +39,21 @@ class Ambulance extends Model
                 return FALSE;
             }
         }
+
+        if ($k == 'ambulatoriamz'){
+            if (isset($this->name)) {
+                return new StatAmbulatoriaMZ($this->name);
+            } else {
+                return FALSE;
+            }
+        }
+        if ($k == 'stacionarmz'){
+            if (isset($this->name)) {
+                return new StatStacionarMZ($this->name);
+            } else {
+                return FALSE;
+            }
+        }
     }
 
 }

@@ -20,11 +20,25 @@ class Administrator extends Controller
         $this->view->display(__DIR__ . '/../Views/admin_stacionar.php');
     }
 
+    protected function actionStacionarmz()
+    {
+        $this->view->title .= ' Cвод(СТАЦИОНАР)';
+        $this->view->ambulances = \App\Models\Ambulance::findAll();
+        $this->view->display(__DIR__ . '/../Views/admin_stacionar_mz.php');
+    }
+
     protected function actionAmbulatoria()
     {
         $this->view->title .= ' Cвод(АМБУЛАТОРИЯ)';
         $this->view->ambulances = \App\Models\Ambulance::findAll();
         $this->view->display(__DIR__ . '/../Views/admin_ambulatoria.php');
+    }
+
+    protected function actionAmbulatoriamz()
+    {
+        $this->view->title .= ' Cвод(АМБУЛАТОРИЯ)';
+        $this->view->ambulances = \App\Models\Ambulance::findAll();
+        $this->view->display(__DIR__ . '/../Views/admin_ambulatoria_mz.php');
     }
 
     protected function actionEnterdata()

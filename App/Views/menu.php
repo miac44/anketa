@@ -3,6 +3,9 @@
 <?php $menu['Свод (СТАЦИОНАР)'] = '/administrator/stacionar/'; ?>
 <?php $menu['Свод (АМБУЛАТОРИЯ)'] = '/administrator/ambulatoria/'; ?>
 <?php $menu['Ввод данных с МЗ'] = '/administrator/enterdata/'; ?>
+<?php $menu['Свод МЗ (СТАЦИОНАР)'] = '/administrator/stacionarmz/'; ?>
+<?php $menu['Свод МЗ (АМБУЛАТОРИЯ)'] = '/administrator/ambulatoriamz/'; ?>
+
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
