@@ -289,4 +289,4 @@ class StatAmbulatoria extends Model
         return array_sum($this->countbytype);
     }
 
-}
+ }

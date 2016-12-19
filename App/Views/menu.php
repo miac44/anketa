@@ -5,6 +5,8 @@
 <?php $menu['Ввод данных с МЗ'] = '/administrator/enterdata/'; ?>
 <?php $menu['Свод МЗ (СТАЦИОНАР)'] = '/administrator/stacionarmz/'; ?>
 <?php $menu['Свод МЗ (АМБУЛАТОРИЯ)'] = '/administrator/ambulatoriamz/'; ?>
+<?php $menu['Промежуточная форма (СТАЦИОНАР)'] = '/administrator/table_stacionar/'; ?>
+<?php $menu['Промежуточная форма (АМБУЛАТОРИЯ)'] = '/administrator/table_ambulatoria/'; ?>
 
 
 <nav class="navbar navbar-default">

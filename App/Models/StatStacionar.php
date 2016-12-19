@@ -153,6 +153,9 @@ class StatStacionar extends Model
         if ($percent>=55) $points++;
         if ($percent>=50) $points++;
         $stat = new Stat();
+        $stat->count_true = $invalid;
+        $stat->count_false = $all-$invalid;
+        $stat->count = $all;
         $stat->points = $points;
         return $stat;
     }
@@ -194,33 +197,63 @@ class StatStacionar extends Model
         $stat->points = $points;
         return $stat;
     }
+    public function get_3_1_value()
+    {
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="до 30 мин"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[5] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_5;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="до 45 мин"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[4] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_4;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="до 60 мин"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_3;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="до 90 мин"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row6="90 мин и более"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_12_1;
+        ksort($arr);
+        if (array_sum($arr)==0) {
+             $arr['sum']=0;
+        } else {
+            $arr['sum'] = round(($arr[1]*90+$arr[2]*89+$arr[3]*60+$arr[4]*45+$arr[5]*30)/array_sum($arr));
+        };
+        return $arr;
+    }
     public function get_3_2()
     {
         $gos_garant = 20;
-        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="меньше 15 календарных дней"';
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "меньше 15 календарных дней%"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $a = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_6;
-        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="15 календарных дней"';
+        $a= (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_6;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "15 календарных дней%"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $b = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_5;
-        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="27 календарных дней"';
+        $b = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_5;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "27 календарных дней%"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $c = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_4;
-        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="28 календарных дней"';
+        $c = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_4;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "28 календарных дней%"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $d = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_3;
-        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="29 календарных дней"';
+        $d = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_3;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "29 календарных дней%"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $e = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_2;
-        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2="30 календарных дней и более"';
+        $e = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "30 календарных дней и более%"';
         $db = \App\Db::instance();
         $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
-        $f = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_3_1;
+        $f = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_1;
         if ($a+$b+$c+$d+$e==0){
             $time = 99999;
         } else {
@@ -237,11 +270,47 @@ class StatStacionar extends Model
         return $stat;
     }
 
+    public function get_3_2_value()
+    {
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "меньше 15 календарных дней%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[6] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_6;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "15 календарных дней%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[5] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_5;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "27 календарных дней%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[4] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_4;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "28 календарных дней%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_3;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "29 календарных дней%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row2 LIKE "30 календарных дней и более%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_03_1;
+        ksort($arr);
+        if (array_sum($arr)==0) {
+             $arr['sum']=0;
+        } else {
+            $arr['sum'] = round(($arr[1]*30+$arr[2]*29+$arr[3]*28+$arr[4]*27+$arr[5]*15+$arr[6]*10)/array_sum($arr));
+        };
+        return $arr;
+    }
+
     public function get_3_3()
     {
         $sitestat = $this->getStatPerYes('row3');
-        $count_true = $this->mzstacionar->mzstacionar_4_1 + $this->mzstacionar->mzstacionar_5_1 + $this->mzstacionar->mzstacionar_6_1 + $this->mzstacionar->mzstacionar_7_1 + $this->mzstacionar->mzstacionar_8_1 + $this->mzstacionar->mzstacionar_9_1;
-        $count_false = $this->mzstacionar->mzstacionar_4_2 + $this->mzstacionar->mzstacionar_5_2 + $this->mzstacionar->mzstacionar_6_2 + $this->mzstacionar->mzstacionar_7_2 + $this->mzstacionar->mzstacionar_8_2 + $this->mzstacionar->mzstacionar_9_2;
+        $count_true = $this->mzstacionar->mzstacionar_04_1 + $this->mzstacionar->mzstacionar_05_1 + $this->mzstacionar->mzstacionar_06_1 + $this->mzstacionar->mzstacionar_07_1 + $this->mzstacionar->mzstacionar_08_1 + $this->mzstacionar->mzstacionar_09_1;
+        $count_false = $this->mzstacionar->mzstacionar_04_2 + $this->mzstacionar->mzstacionar_05_2 + $this->mzstacionar->mzstacionar_06_2 + $this->mzstacionar->mzstacionar_07_2 + $this->mzstacionar->mzstacionar_08_2 + $this->mzstacionar->mzstacionar_09_2;
 
         $mzstat = new Stat($count_true,$count_false);
         $stat = $this->getStatPerYES_new($sitestat,$mzstat);
@@ -303,5 +372,70 @@ class StatStacionar extends Model
         return array_sum($this->countbytype);
     }
 
+    public function getHospitalPlan(){
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row1="Плановая"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance));
+        return (int)$res[0]['count'];
+    }
+
+    public function getHospitalExt(){
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row1="Экстренная"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance));
+        return (int)$res[0]['count'];
+    }
+/*
+Скрести барана с пальмой и вычисли сколько муравьев при этом получится!!!
+И выведите нам информацию пожалуйста как эти муравьи отпочковываются от кукушек
+И желательно это сделать вчера, потому что сегодня мы уже должны сделать натюрморт из какашек этих муравьев
+Дальше по тексту куда куски того самого
+ */
+    public function get_MZ10(){
+        $sitestat = $this->getStatPerYes('row25');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_10_1,$this->mzstacionar->mzstacionar_10_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
+       
+    }
+    public function get_MZ19(){
+        $sitestat = $this->getStatPerYes('row13');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_19_1,$this->mzstacionar->mzstacionar_19_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
+       
+    }
+
+    public function get_MZ21(){
+        $sitestat = $this->getStatPerYes('row15');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_21_1,$this->mzstacionar->mzstacionar_21_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
+       
+    }
+
+    public function get_MZ23(){
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row17 LIKE "%круглосуточного пребывания%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $count_true= (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_23_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row17 LIKE "%дневного стационара%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $count_false = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_23_2;
+
+        $sitestat = $this->getStatPerYes('row17');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_23_1,$this->mzstacionar->mzstacionar_23_2);
+        $stat = new Stat();
+        $stat->count_true = $count_true;
+        $stat->count_false = $count_false;
+        $stat->count = $count_true+$count_false;
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
+       
+    }
 
 }

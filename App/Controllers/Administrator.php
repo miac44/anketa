@@ -98,4 +98,11 @@ class Administrator extends Controller
     {
         $this->view->display(__DIR__ . '/../Views/admin_intermediateform.php');
     }
+
+    protected function actionTable_stacionar()
+    {
+        $this->view->title .= ' Промежуточная форма (СТАЦИОНАР)';
+        $this->view->ambulances = \App\Models\Ambulance::findAll();
+        $this->view->display(__DIR__ . '/../Views/admin_table_stacionar.php');
+    }
 }

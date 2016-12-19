@@ -20,6 +20,7 @@ class StatStacionarMZ extends Model
         $this->id = $res[0]['id'];
         $this->mzstacionar = \App\Models\MZstacionar::findById($this->id);
         $this->countbytype['mz'] = (int)$this->mzstacionar->count;
+        $this->ambulance = $ambulance;
     }
 
     private function getPointsFromPercentDefault($percent)
@@ -213,12 +214,18 @@ class StatStacionarMZ extends Model
         } else {
             return 0;
         }
-
     }
 
     public function getCount(){
         return array_sum($this->countbytype);
     }
 
+    public function getRawData($row){
+        $sql = 'SELECT mzstacionar_' . $row . ' FROM MZstacionar WHERE id=:id';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('id' => $this->id ));
+        return $res[0]['mzstacionar_' . $row];
+       
+    }
 
 }
