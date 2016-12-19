@@ -438,4 +438,259 @@ class StatStacionar extends Model
        
     }
 
+    public function get_MZ14() {
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row8 LIKE "%за счет ОМС, бюджет%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_14_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row8 LIKE "%за счет ДМС%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_14_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row8 LIKE "%на платной основе%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_14_3;
+        ksort($arr);
+        return $arr;
+    }
+
+    public function get_MZ36() {
+        $sitestat = $this->getStatPerYes('row30');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_36_2,$this->mzstacionar->mzstacionar_36_1);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
+    }
+
+    public function get_MZ38() {
+        $sitestat = $this->getStatPerYes('row32');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_38_2,$this->mzstacionar->mzstacionar_38_1);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
+    }
+
+    public function get_MZ17() {
+        $sitestat = $this->getStatPerYes('row11');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_17_1,$this->mzstacionar->mzstacionar_17_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
+    }
+
+    public function get_MZ16() {
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row10 LIKE "I группа%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_16_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row10 LIKE "II группа%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_16_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row10 LIKE "III группа%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_16_3;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row10 LIKE "%ребенок-инвалид%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[4] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_16_3;
+        ksort($arr);
+        return $arr;
+    }
+
+    public function get_MZ13() {
+        $sitestat = $this->getStatPerYes('row7');
+        $mzstat = new Stat($this->mzstacionar->mzstacionar_13_1,$this->mzstacionar->mzstacionar_13_2);
+        $stat = $this->getStatPerYES_new($sitestat,$mzstat);
+        $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
+        return $stat;
+    }
+
+    public function get_MZ11(){
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row5 LIKE "%состояние гардероба%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_11_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row5 LIKE "%отсутствие свободных мест ожидания%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_11_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row5 LIKE "%состояние туалета%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_11_3;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row5 LIKE "%отсутствие питьевой воды%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[4] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_11_4;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row5 LIKE "%санитарные условия%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[5] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_11_5;
+        ksort($arr);
+        return $arr;
+    }
+
+    public function get_MZ18(){
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row12 LIKE "%отсутствие выделенного места стоянки автотранспортных средств для инвалидов%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_18_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row12 LIKE "%отсутствие пандусов, поручней%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_18_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row12 LIKE "%отсутствие подъемных платформ (аппарелей)%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_18_3;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row12 LIKE "%отсутствие адаптированных лифтов%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[4] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_18_4;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row12 LIKE "%отсутствие сменных кресел-колясок%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[5] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_18_5;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row12 LIKE "%отсутствие информационных бегущих строк%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[6] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_18_6;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row12 LIKE "%отсутствие информации шрифтом Брайля%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[7] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_18_7;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row12 LIKE "%отсутствие доступных санитарно-гигиенических помещений%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[8] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_18_8;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row12 LIKE "%отсутствие сопровождающих работников%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[9] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_18_9;
+        ksort($arr);
+        return $arr;
+    }
+
+    public function get_MZ28(){
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row22 LIKE "%для уточнения диагноза%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_28_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row22 LIKE "%с целью сокращения срока лечения%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_28_3;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row22 LIKE "%приобретение расходных материалов%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_28_2;
+        ksort($arr);
+        return $arr;
+    }
+
+    public function get_MZ30(){
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row24 LIKE "%Вам не разъяснили информацию о состоянии здоровья%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_30_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row24 LIKE "%Вам не дали рекомендации по диагностике, лечению и реабилитации%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_30_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row24 LIKE "%Вам не дали выписку%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_30_3;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row24 LIKE "%другое%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[4] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_30_4;
+        ksort($arr);
+        return $arr;
+    }
+
+    public function get_MZ32(){
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row26 LIKE "%уборка помещений%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_32_4;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row26 LIKE "%освещение, температурный режим%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_32_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row26 LIKE "%медицинской организации требуется ремонт%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_32_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row26 LIKE "%в медицинской организации старая мебель%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[4] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_32_3;
+        ksort($arr);
+        return $arr;
+    }
+
+    public function get_MZ27(){
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row31 LIKE "%положительный%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_27_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row31 LIKE "%отрицательный%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_27_2;
+        ksort($arr);
+        return $arr;
+    }
+
+    public function get_MZ39(){
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row33 LIKE "%я сам (а)%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_39_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row33 LIKE "%персонал медицинской организации%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_39_2;
+        ksort($arr);
+        return $arr;
+    }
+    public function get_MZ40(){
+        $arr = array();
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row34 LIKE "%письменная благодарность%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[1] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_40_1;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row34 LIKE "%цветы%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[2] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_40_2;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row34 LIKE "%подарки%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[3] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_40_3;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row34 LIKE "%услуги%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[4] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_40_4;
+        $sql = 'SELECT COUNT(*) as count FROM ' . static::TABLE . ' WHERE ambulance=:ambulance AND row34 LIKE "%деньги%"';
+        $db = \App\Db::instance();
+        $res = $db->queryRaw($sql, array('ambulance' => $this->ambulance ));
+        $arr[5] = (int)$res[0]['count'] + $this->mzstacionar->mzstacionar_40_5;
+        ksort($arr);
+        return $arr;
+    }
+
 }

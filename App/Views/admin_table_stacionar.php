@@ -199,72 +199,111 @@
           <th colspan="5"></th>
         </tr>
         <?php foreach ($ambulances as $ambulance) : ?>
-        <tr>
-          <td><?php echo $ambulance->id; ?></td>
-          <td><?php echo $ambulance->name; ?></td>
-          <td>2016</td>
-          <td><?php echo $ambulance->stacionar->getCountByType('Сайт'); ?>+<?php echo $ambulance->stacionar->getCountByType('Вручную'); ?>+<?php echo $ambulance->stacionar->getCountByType('mz'); ?>=<?php echo $ambulance->stacionar->getCount(); ?></td>
-          <td><?php echo $ambulance->stacionar->getHospitalExt()+$ambulance->stacionarmz->getRawData('02_2'); ?></td>
-          <td><?php echo $ambulance->stacionar->getHospitalPlan()+$ambulance->stacionarmz->getRawData('02_1'); ?></td>
-          <td><?php echo $ambulance->stacionar->get_1_4()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_1_4()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_1_4()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_1_5()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_1_5()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_1_5()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_1()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_1()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_2_1()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_2()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_2()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_2_2()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_3()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_3()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_2_3()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_4()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_4()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_2_4()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_5()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_2_5()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_2_5()->count_false; ?></td>
-          <?php foreach ($ambulance->stacionar->get_3_1_value() as $value) : ?>
-            <td><?php echo $value; ?></td>
-          <?php endforeach; ?>
-          <?php foreach ($ambulance->stacionar->get_3_2_value() as $value) : ?>
-            <td><?php echo $value; ?></td>
-          <?php endforeach; ?>
-          <td><?php echo $ambulance->stacionar->get_3_3()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_3_3()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_3_3()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_MZ10()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_MZ10()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_4_1()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_4_1()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_4_1()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_4_2()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_4_2()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_4_2()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_5_1()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_5_1()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_5_1()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_5_2()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_5_2()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_5_2()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_5_3()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_5_3()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_5_3()->count_false; ?></td>
-          <td><?php echo $ambulance->stacionar->get_MZ19()->count_false; ?></td>
-          <td><?php echo 100-$ambulance->stacionar->get_MZ10()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_MZ10()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_MZ21()->count_false; ?></td>
-          <td><?php echo 100-$ambulance->stacionar->get_MZ21()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_MZ21()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_MZ23()->count_false; ?></td>
-          <td><?php echo 100-$ambulance->stacionar->get_MZ23()->getPercent(); ?>%</td>
-          <td><?php echo $ambulance->stacionar->get_MZ23()->count_true; ?></td>
-          <td><?php echo $ambulance->stacionar->get_MZ23()->getPercent(); ?>%</td>
-          <td colspan="40"></td>
-        </tr>
+          <?php if ($ambulance->type == 'stacionar') : ?>
+            <tr>
+              <td><?php echo $ambulance->id; ?></td>
+              <td><?php echo $ambulance->name; ?></td>
+              <td>2016</td>
+              <td><?php echo $ambulance->stacionar->getCountByType('Сайт'); ?>+<?php echo $ambulance->stacionar->getCountByType('Вручную'); ?>+<?php echo $ambulance->stacionar->getCountByType('mz'); ?>=<?php echo $ambulance->stacionar->getCount(); ?></td>
+              <td><?php echo $ambulance->stacionar->getHospitalExt()+$ambulance->stacionarmz->getRawData('02_2'); ?></td>
+              <td><?php echo $ambulance->stacionar->getHospitalPlan()+$ambulance->stacionarmz->getRawData('02_1'); ?></td>
+              <td><?php echo $ambulance->stacionar->get_1_4()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_1_4()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_1_4()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_1_5()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_1_5()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_1_5()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_1()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_1()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_2_1()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_2()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_2()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_2_2()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_3()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_3()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_2_3()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_4()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_4()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_2_4()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_5()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_2_5()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_2_5()->count_false; ?></td>
+              <?php foreach ($ambulance->stacionar->get_3_1_value() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <?php foreach ($ambulance->stacionar->get_3_2_value() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <td><?php echo $ambulance->stacionar->get_3_3()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_3_3()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_3_3()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ10()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ10()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_4_1()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_4_1()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_4_1()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_4_2()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_4_2()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_4_2()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_5_1()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_5_1()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_5_1()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_5_2()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_5_2()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_5_2()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_5_3()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_5_3()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_5_3()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ19()->count_false; ?></td>
+              <td><?php echo 100-$ambulance->stacionar->get_MZ10()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_MZ10()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ21()->count_false; ?></td>
+              <td><?php echo 100-$ambulance->stacionar->get_MZ21()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_MZ21()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ23()->count_false; ?></td>
+              <td><?php echo 100-$ambulance->stacionar->get_MZ23()->getPercent(); ?>%</td>
+              <td><?php echo $ambulance->stacionar->get_MZ23()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ23()->getPercent(); ?>%</td>
+              <?php foreach ($ambulance->stacionar->get_MZ14() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <td><?php echo $ambulance->stacionar->get_MZ36()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ36()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ38()->count_false; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ38()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ17()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ17()->count_false; ?></td>
+              <?php foreach ($ambulance->stacionar->get_MZ16() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <td><?php echo $ambulance->stacionar->get_MZ13()->count_true; ?></td>
+              <td><?php echo $ambulance->stacionar->get_MZ13()->count_false; ?></td>
+              <?php foreach ($ambulance->stacionar->get_MZ11() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <?php foreach ($ambulance->stacionar->get_MZ18() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <?php foreach ($ambulance->stacionar->get_MZ28() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <?php foreach ($ambulance->stacionar->get_MZ30() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <?php foreach ($ambulance->stacionar->get_MZ32() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <?php foreach ($ambulance->stacionar->get_MZ27() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <?php foreach ($ambulance->stacionar->get_MZ39() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+              <?php foreach ($ambulance->stacionar->get_MZ40() as $value) : ?>
+                <td><?php echo $value; ?></td>
+              <?php endforeach; ?>
+            </tr>
+          <?php endif; ?>
         <?php endforeach; ?>
       </thead>  
     </table>
