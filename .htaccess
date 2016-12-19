@@ -1,7 +1,7 @@
 RewriteEngine On
 
 <Files "admin.php"> 
-#	AuthUserFile e:\OpenServer\domains\anketa\.htpasswd
+	AuthUserFile e:\OpenServer\domains\anketa\.htpasswd
 	AuthUserFile d:\OpenServer\domains\anketa\.htpasswd
 	AuthName "Authorized personnel only."
 	AuthType Basic
