@@ -1,1 +1,3 @@
-.htaccess
+.ht*
+.idea/
+export/*.csv
