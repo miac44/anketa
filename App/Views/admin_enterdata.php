@@ -16,7 +16,10 @@
         <tr>
           <td><?php echo $ambulance->id; ?></td>
           <td><?php echo $ambulance->name; ?></td>
-          <td><a href="/administrator/enterdata_stacionar/?id=<?php echo $ambulance->id; ?>">ввести данные</a></td>
+          <td>
+          <?php if ($ambulance->type != "stacionar") echo "x"; ?>
+          <?php if ($ambulance->type == "stacionar") echo '<a href="/administrator/enterdata_stacionar/?id=' .  $ambulance->id . '">ввести данные</a>'; ?>
+          </td>
           <td><a href="/administrator/enterdata_ambulatoria/?id=<?php echo $ambulance->id; ?>">ввести данные</a></td>
         </tr>
       <?php endforeach; ?>  

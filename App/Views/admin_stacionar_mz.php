@@ -62,35 +62,37 @@
         </thead>
         <tbody>
         <?php foreach ($ambulances as $ambulance) : ?>
-            <tr>
-                <td><?php echo $ambulance->id; ?></td>
-                <td><?php echo $ambulance->name; ?></td>
-                <td><?php echo $ambulance->stacionarmz->getCountByType('mz'); ?></td>
-                <td>-</td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_1_2()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_1_3()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_1_4()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_1_5()->points; ?></td>
-                <td class="text-center info"><?php echo $points_1=$ambulance->stacionarmz->get_1_2()->points+$ambulance->stacionarmz->get_1_3()->points+$ambulance->stacionarmz->get_1_4()->points+$ambulance->stacionarmz->get_1_5()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_1()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_2()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_3()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_4()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_5()->points; ?></td>
-                <td class="text-center info"><?php echo $points_2=$ambulance->stacionarmz->get_2_1()->points+$ambulance->stacionarmz->get_2_2()->points+$ambulance->stacionarmz->get_2_3()->points+$ambulance->stacionarmz->get_2_4()->points+$ambulance->stacionarmz->get_2_5()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_3_1()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_3_2()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_3_3()->points; ?></td>
-                <td class="text-center info"><?php echo $points_3=$ambulance->stacionarmz->get_3_1()->points+$ambulance->stacionarmz->get_3_2()->points+$ambulance->stacionarmz->get_3_3()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_4_1()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_4_2()->points; ?></td>
-                <td class="text-center info"><?php echo $points_4=$ambulance->stacionarmz->get_4_1()->points+$ambulance->stacionarmz->get_4_2()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_5_1()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_5_2()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->stacionarmz->get_5_3()->points; ?></td>
-                <td class="text-center info"><?php echo $points_5=$ambulance->stacionarmz->get_5_1()->points+$ambulance->stacionarmz->get_5_2()->points+$ambulance->stacionarmz->get_5_3()->points; ?></td>
-                <td class="text-center active"><?php echo $points_1+$points_2+$points_3+$points_4+$points_5; ?></td>
-            </tr>
+            <?php if ($ambulance->type == 'stacionar') : ?>
+                <tr>
+                    <td><?php echo $ambulance->id; ?></td>
+                    <td><?php echo $ambulance->name; ?></td>
+                    <td><?php echo $ambulance->stacionarmz->getCountByType('mz'); ?></td>
+                    <td>-</td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_1_2()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_1_3()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_1_4()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_1_5()->points; ?></td>
+                    <td class="text-center info"><?php echo $points_1=$ambulance->stacionarmz->get_1_2()->points+$ambulance->stacionarmz->get_1_3()->points+$ambulance->stacionarmz->get_1_4()->points+$ambulance->stacionarmz->get_1_5()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_1()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_2()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_3()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_4()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_2_5()->points; ?></td>
+                    <td class="text-center info"><?php echo $points_2=$ambulance->stacionarmz->get_2_1()->points+$ambulance->stacionarmz->get_2_2()->points+$ambulance->stacionarmz->get_2_3()->points+$ambulance->stacionarmz->get_2_4()->points+$ambulance->stacionarmz->get_2_5()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_3_1()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_3_2()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_3_3()->points; ?></td>
+                    <td class="text-center info"><?php echo $points_3=$ambulance->stacionarmz->get_3_1()->points+$ambulance->stacionarmz->get_3_2()->points+$ambulance->stacionarmz->get_3_3()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_4_1()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_4_2()->points; ?></td>
+                    <td class="text-center info"><?php echo $points_4=$ambulance->stacionarmz->get_4_1()->points+$ambulance->stacionarmz->get_4_2()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_5_1()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_5_2()->points; ?></td>
+                    <td class="text-center"><?php echo $ambulance->stacionarmz->get_5_3()->points; ?></td>
+                    <td class="text-center info"><?php echo $points_5=$ambulance->stacionarmz->get_5_1()->points+$ambulance->stacionarmz->get_5_2()->points+$ambulance->stacionarmz->get_5_3()->points; ?></td>
+                    <td class="text-center active"><?php echo $points_1+$points_2+$points_3+$points_4+$points_5; ?></td>
+                </tr>
+            <?php endif; ?>
         <?php endforeach; ?>
         </tbody>
     </table>

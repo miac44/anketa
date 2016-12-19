@@ -26,12 +26,12 @@
           <td><?php echo $ambulance->id; ?></td>
           <td><?php echo $ambulance->name; ?></td>
           <td><?php echo $ambulance->ambulatoria->getCountByType('Вручную'); ?></td>
-          <td><?php echo $ambulance->stacionar->getCountByType('Вручную'); ?></td>
+          <td><?php if ($ambulance->type != 'stacionar') echo "x"; else echo $ambulance->stacionar->getCountByType('Вручную'); ?></td>
           <td><?php echo $ambulance->ambulatoria->getCountByType('mz')+$ambulance->ambulatoria->getCountByType('Сайт'); ?></td>
-          <td><?php echo $ambulance->stacionar->getCountByType('mz')+$ambulance->stacionar->getCountByType('Сайт'); ?></td>
+          <td><?php if ($ambulance->type != 'stacionar') echo "x"; else echo $ambulance->stacionar->getCountByType('mz')+$ambulance->stacionar->getCountByType('Сайт'); ?></td>
           <td><?php echo $ambulance->ambulatoria->getCount(); ?></td>
-          <td><?php echo $ambulance->stacionar->getCount(); ?></td>
-          <td><?php echo $ambulance->stacionar->getCount()+$ambulance->ambulatoria->getCount(); ?></td>
+          <td><?php if ($ambulance->type != 'stacionar') echo "x"; else echo $ambulance->stacionar->getCount(); ?></td>
+          <td><?php if ($ambulance->type != 'stacionar') echo $ambulance->ambulatoria->getCount(); else echo $ambulance->stacionar->getCount()+$ambulance->ambulatoria->getCount(); ?></td>
         </tr>
       <?php endforeach; ?>  
       </tbody>
