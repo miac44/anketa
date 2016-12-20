@@ -198,6 +198,8 @@
           <th colspan="2"></th>
           <th colspan="5"></th>
         </tr>
+      </thead>
+      <tbody>
         <?php foreach ($ambulances as $ambulance) : ?>
           <?php if ($ambulance->type == 'stacionar') : ?>
             <tr>
@@ -305,7 +307,7 @@
             </tr>
           <?php endif; ?>
         <?php endforeach; ?>
-      </thead>  
+      </tbody>
     </table>
 </div>
 <?php include_once 'footer.php';?>
