@@ -38,6 +38,15 @@ class Anketa extends Model
                 return FALSE;
             }
         }
+
+        if ($k == 'count'){
+            if (isset($this->id)){
+                return $this->getCountValues($this->action);
+            } else {
+                return FALSE;
+            }
+        }
+
         return NULL;
     }
 

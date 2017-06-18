@@ -10,8 +10,15 @@ class Administrator extends Controller
     protected function actionIndex()
     {
         $this->view->title .= ' Админка';
-        $this->view->ambulances = \App\Models\Ambulance::findAll();
+        $this->view->ambulances = \App\Models\NEW_Ambulance::findAll();
+        $this->view->ankets = \App\Models\Anketa::findAll();
         $this->view->display(__DIR__ . '/../Views/admin.php');
+    }
+    protected function actionOldIndex()
+    {
+        $this->view->title .= ' Админка';
+        $this->view->ambulances = \App\Models\Ambulance::findAll();
+        $this->view->display(__DIR__ . '/../Views/admin.old.php');
     }
     protected function actionStacionar()
     {

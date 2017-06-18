@@ -1,5 +1,6 @@
 <?php $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); ?>
 <?php $menu['Главная'] = '/administrator/'; ?>
+<?php $menu['Главная.Старая'] = '/administrator/oldindex/'; ?>
 <?php $menu['Свод (СТАЦИОНАР)'] = '/administrator/stacionar/'; ?>
 <?php $menu['Свод (АМБУЛАТОРИЯ)'] = '/administrator/ambulatoria/'; ?>
 <?php $menu['Ввод данных с МЗ'] = '/administrator/enterdata/'; ?>
