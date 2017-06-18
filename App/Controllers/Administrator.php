@@ -105,4 +105,12 @@ class Administrator extends Controller
         $this->view->ambulances = \App\Models\Ambulance::findAll();
         $this->view->display(__DIR__ . '/../Views/admin_table_stacionar.php');
     }
+
+    protected function actionTable_ambulatoria()
+    {
+        $this->view->title .= ' Промежуточная форма (АМБУЛАТОРИЯ)';
+        $this->view->ambulances = \App\Models\Ambulance::findAll();
+        $this->view->display(__DIR__ . '/../Views/admin_table_ambulatoria.php');
+    }
+
 }

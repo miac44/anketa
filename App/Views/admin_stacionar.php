@@ -68,8 +68,8 @@
                     <td><?php echo $ambulance->name; ?></td>
                     <td><?php echo $ambulance->stacionar->getCountByType('Сайт'); ?>+<?php echo $ambulance->stacionar->getCountByType('Вручную'); ?>+<?php echo $ambulance->stacionar->getCountByType('mz'); ?>=<?php echo $ambulance->stacionar->getCount(); ?></td>
                     <td>-</td>
-                    <td class="text-center"><?php echo $ambulance->stacionar->get_1_2()->points; ?></td>
-                    <td class="text-center"><?php echo $ambulance->stacionar->get_1_3()->points; ?></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
                     <td class="text-center"><?php echo $ambulance->stacionar->get_1_4()->points; ?></td>
                     <td class="text-center"><?php echo $ambulance->stacionar->get_1_5()->points; ?></td>
                     <td class="text-center info"><?php echo $points_1=$ambulance->stacionar->get_1_2()->points+$ambulance->stacionar->get_1_3()->points+$ambulance->stacionar->get_1_4()->points+$ambulance->stacionar->get_1_5()->points; ?></td>

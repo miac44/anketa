@@ -24,7 +24,7 @@
       <?php foreach ($ambulances as $ambulance) : ?>
         <tr>
           <td><?php echo $ambulance->id; ?></td>
-          <td><?php echo $ambulance->name; ?></td>
+          <td><?php echo $ambulance->name; ?>(<?php echo $ambulance->type; ?>)</td>
           <td><?php echo $ambulance->ambulatoria->getCountByType('Вручную'); ?></td>
           <td><?php if ($ambulance->type != 'stacionar') echo "x"; else echo $ambulance->stacionar->getCountByType('Вручную'); ?></td>
           <td><?php echo $ambulance->ambulatoria->getCountByType('mz')+$ambulance->ambulatoria->getCountByType('Сайт'); ?></td>

@@ -8,7 +8,7 @@ class AdminRouter extends \App\Router
 
 	public static function startPageController()
 	{
-		return '\\App\\Controllers\\Admin';
+		return '\\App\\Controllers\\Newadm';
 	}
 
 }

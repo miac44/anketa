@@ -66,10 +66,10 @@
           <th>нет</th>
           <th colspan="2">да (% от круглосуточного пребывания)</th>
           <th>нет</th>
-          <th colspan="2">нет</th>
-          <th>да</th>
-          <th colspan="2">нет</th>
-          <th>да</th>
+          <th colspan="2">да</th>
+          <th>нет</th>
+          <th colspan="2">да</th>
+          <th>нет</th>
           <th colspan="2">да</th>
           <th>нет</th>
           <th>90 мин и более</th>
@@ -198,12 +198,14 @@
           <th colspan="2"></th>
           <th colspan="5"></th>
         </tr>
+      </thead>
+      <tbody>
         <?php foreach ($ambulances as $ambulance) : ?>
           <?php if ($ambulance->type == 'stacionar') : ?>
             <tr>
               <td><?php echo $ambulance->id; ?></td>
               <td><?php echo $ambulance->name; ?></td>
-              <td>2016</td>
+              <td>2017</td>
               <td><?php echo $ambulance->stacionar->getCountByType('Сайт'); ?>+<?php echo $ambulance->stacionar->getCountByType('Вручную'); ?>+<?php echo $ambulance->stacionar->getCountByType('mz'); ?>=<?php echo $ambulance->stacionar->getCount(); ?></td>
               <td><?php echo $ambulance->stacionar->getHospitalExt()+$ambulance->stacionarmz->getRawData('02_2'); ?></td>
               <td><?php echo $ambulance->stacionar->getHospitalPlan()+$ambulance->stacionarmz->getRawData('02_1'); ?></td>
@@ -305,7 +307,7 @@
             </tr>
           <?php endif; ?>
         <?php endforeach; ?>
-      </thead>  
+      </tbody>
     </table>
 </div>
 <?php include_once 'footer.php';?>

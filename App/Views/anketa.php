@@ -1,5 +1,5 @@
 <?php include_once 'header.php';?>
-<h1 class="text-center"><?php echo $anketa->title; ?></h1>
+<h1 class="text-center"><?php echo $anketa->text; ?></h1>
 <form name="anketa_<?php echo $anketa->action;?>" action="/anketa/save/?action=<?php echo $anketa->action;?>" method="post">
     <div class="fluid-container">
         <div class="row">
@@ -22,7 +22,9 @@
             <div class="col-md-8">
                 <select size="1" id="ambulance" class="" title="Выберите поликлинику" name="ambulance" required>
                     <?php foreach ($ambulances as $ambulance) : ?>
-                    <option value="<?php echo $ambulance->name; ?>" class="<?php echo $ambulance->region->name; ?>"><?php echo $ambulance->name; ?></option>
+                        <?php if ((string)$ambulance->type==(string)$anketa->action) : ?>
+                            <option value="<?php echo $ambulance->name; ?>" class="<?php echo $ambulance->region->name; ?>"><?php echo $ambulance->name; ?></option>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </select>
             </div>

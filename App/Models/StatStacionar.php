@@ -69,17 +69,18 @@ class StatStacionar extends Model
         return new Stat($stat->count_true+$stat_mz->count_true, $stat->count_false+$stat_mz->count_false);
     }
 
+
     public function get_1_2()
     {
         $stat = new Stat();
-        $stat->points = 1;
+//        $stat->points = 1;
         return $stat;
     }
 
     public function get_1_3()
     {
         $stat = new Stat();
-        $stat->points = 2;
+//        $stat->points = 2;
         return $stat;
     }
 
